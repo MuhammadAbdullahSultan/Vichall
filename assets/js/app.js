@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'home', 'founder', 'rooms', 'facilities', 'rules', 'virtual', 'directions', 'apply']);
+var app = angular.module('myApp', ['ngRoute', 'home', 'founder', 'rooms', 'facilities', 'rules', 'virtual', 'directions', 'apply', 'contact']);
 ;
 
 app.directive('headerFile', function () {
