@@ -1,8 +1,31 @@
 <header-file></header-file>
 <slides-file></slides-file>
+<hr>
 
-<div class="jumbotron">
+<script src="../assets/js/pdfobject.min.js"></script>
+<script>
+    PDFObject.embed("../assets/pdf/page1.pdf", "#form1");
+    PDFObject.embed("../assets/pdf/page2.pdf", "#form2");
+</script>
 
+<style>
+.pdfobject-container { height: 500px;}
+.pdfobject { border: 1px solid #666; }
+</style>
+
+<div class="jumbotron well">
+    <div class="container">
+        
+        <h1>Apply online</h1>
+        <br>
+        
+        <p>If you want to apply online, fill out 2 following forms and send scans of them to <a href="mailto:victoriahallspring@gmail.com" >victoriahallspring@gmail.com</a></p>
+        <h4><strong>Application Form 1</strong></h4>
+        <div id="form1"></div>
+        <hr>
+        <h4><strong>Application Form 2</strong></h4>
+        <div id="form2"></div>
+    </div>
 </div>
 
 <footer-file></footer-file>
