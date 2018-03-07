@@ -4,8 +4,45 @@
 <hr>
 <div class="jumbotron well">
     <div class="container">
-    
+    <div class="col-xs-6 col-md-6">
+        <a href="" class="thumbnail">
+          <img src="../assets/images/direction.jpg">
+        </a>
+        
+      </div>
+        <div class="col-xs-6 col-md-6">
+        
+        <h5><p>Victoria Hall has very convenient location. Everything what you might need is in very short walking distance:</p></h5>
+        <p></p>
+    <ul>
+        <li>Many choices of of eating places are near</li>
+        <li>1 minute to Swinburne University</li>
+        <li>1 minute to Immigration office</li>
+        <li>1 minute to The Spring Shopping Mall</li>
+        <li>1 minute to RHB Bank.</li>
+        <li>1 minute to Taxi stop (near Spring)</li>
+        <li>15 minute drive to airport</li>
+    </ul>
+        </div>
+        
     </div>
+    
+    <div id="map" style="width:100%;height:600px;"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 1.5338311, lng: 110.3563839};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 20,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl9NOn9iE0X4S9ypHzKsudY5F74w4wA4U&callback=initMap">
+    </script>
 </div>
-
 <footer-file></footer-file>
