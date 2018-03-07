@@ -1,0 +1,3 @@
+.myol { counter-reset: item }
+.myli{ display: block }
+.myli:before { content: counters(item, ".") " "; counter-increment: item }

@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'home', 'founder']);
+var app = angular.module('myApp', ['ngRoute', 'home', 'founder', 'rooms', 'facilities', 'rules', 'virtual', 'directions']);
 ;
 
 app.directive('headerFile', function () {
@@ -27,8 +27,11 @@ app.directive('slidesFile', function () {
     };
 });
 
-app.config(['$routeProvider', function ($routeProvider) {
+app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     'use strict';
+    
+//    $locationProvider.html5Mode(true);
+    
     $routeProvider.otherwise({
         redirectTo: '/home'
     });
