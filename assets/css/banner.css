@@ -1,0 +1,17 @@
+#main_header {
+    background: url(../images/header-bg.jpg) repeat-x top left;
+}
+
+#main_header .logo {
+    background: url(../images/logo.png) no-repeat center;
+}
+
+#logo {
+    
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.header_1 {
+    text-align: center;
+}

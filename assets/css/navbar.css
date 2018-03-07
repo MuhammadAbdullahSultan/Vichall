@@ -1,0 +1,12 @@
+.navbar-default {
+  background-color:#430807;
+  background-image: none;
+  background-repeat: no-repeat;
+  border-top-color: red;
+  border-width: 1px;
+ }
+
+.separator {
+    
+    background: url(../images/mainnav-sep.gif) no-repeat right center;
+}
