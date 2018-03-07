@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'home']);
+var app = angular.module('myApp', ['ngRoute', 'home', 'founder']);
 ;
 
 app.directive('headerFile', function () {
@@ -20,6 +20,12 @@ app.directive('footerFile', function () {
     };
 });
 
+app.directive('slidesFile', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'slides/slides.html'
+    };
+});
 
 app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
