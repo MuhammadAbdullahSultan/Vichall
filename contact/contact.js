@@ -4,7 +4,7 @@ var app = angular.module('contact', ['ngRoute']);
 app.config(['$routeProvider', function ($routeProvider) {
     'use strict';
     $routeProvider.when('/contactus', {
-        title: 'Maps & Directions',
+        title: 'Contact Us',
         templateUrl: 'contact/contact.html',
         controller: 'contactCtrl',
     });

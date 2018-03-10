@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-ng-app="myApp">
+<html data-ng-app="myApp" >
     
 <head>
     <title>{{title}}</title>
@@ -8,6 +8,7 @@
   <meta name="robots" content="index, follow" />
   <meta name="keywords" content="Victoria Hall, Swinburne, Kuching, Accommodation, rooms, rent" />
   <meta name="description" content="Victoria Hall - affordable accommodation for students in Kuching close to Swinburne university" />
+    
   <title>Victoria Hall accommodation</title>    
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="assets/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -22,14 +23,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="assets/css/orderedlist.css"/>
     <link rel="stylesheet" href="assets/css/gallery.css"/>
+    <link rel="stylesheet" href="assets/css/login.css"/>
     
     
 </head>
 <body>
 
         
-    
+    <div>
         <div data-ng-view></div>
+    </div>
         
 
 
@@ -37,10 +40,29 @@
     
     <script src="assets/js/angular.js"></script>
     <script src="assets/js/angular-route.js"></script>
-    <script src="assets/js/app.js"></script>
-    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAQDrj2R1qp2WyZ12we_H5OjDIM9F0RVNM",
+        authDomain: "victoria-halls.firebaseapp.com",
+        databaseURL: "https://victoria-halls.firebaseio.com",
+        projectId: "victoria-halls",
+        storageBucket: "victoria-halls.appspot.com",
+        messagingSenderId: "594613908963"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>
     <!--CUSTOM SCRIPTS-->
-    
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/login.js"></script>
     <script src="home/home.js"></script>
     <script src="foundermessage/founder.js"></script>
     <script src="rooms/rooms.js"></script>
@@ -52,5 +74,9 @@
     <script src="contact/contact.js"></script>
     <script src="residents/residents.js"></script>
     <script src="gallery/gallery.js"></script>
+    
+    
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+
 </html>
 

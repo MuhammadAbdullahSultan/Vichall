@@ -32,23 +32,28 @@
         
     </div>
             <div class="collapse navbar-collapse" id="navcol-1">
-                <ul class="nav navbar-nav nav-right">
-                    <li class="separator" role="presentation"><a href="index.html">home </a></li>
+                <ul class="nav navbar-nav nav-left">
+                    <li class="separator" role="presentation"><a href="!#home">home </a></li>
                     <li class="dropdown separator"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="">ABOUT US <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="#!message">Founder's message</a></li>
-                            <li role="presentation"><a href="#!rooms">Rooms</a></li>
-                            <li role="presentation"><a href="#!facilities">Facilities</a></li>
-                            <li role="presentation"><a href="#!rules">Rules & regulations</a></li>
-                            <li role="presentation"><a href="#!applyonline">Apply Online</a></li>
+                            <li role="presentation"><a href="!#message">Founder's message</a></li>
+                            <li role="presentation"><a href="!#rooms">Rooms</a></li>
+                            <li role="presentation"><a href="!#facilities">Facilities</a></li>
+                            <li role="presentation"><a href="!#rules">Rules & regulations</a></li>
+                            <li role="presentation"><a href="!#applyonline">Apply Online</a></li>
                         </ul>
                     </li>
-                    <li class="separator" role="presentation"><a href="#!virtualtour">VIRTUAL TOUR </a></li>
-                    <li class="separator" role="presentation"><a href="#!gallery">GALLERY </a></li>
-                    <li class="separator" role="presentation"><a href="#!residents">OUR RESIDENTS </a></li>
-                    <li class="separator" role="presentation"><a href="#!directions">MAPS & DIRECTIONS </a></li>
-                    <li role="presentation"><a href="#!contactus">CONTACT US </a></li>
+                    <li class="separator" role="presentation"><a href="!#virtualtour">VIRTUAL TOUR </a></li>
+                    <li class="separator" role="presentation"><a href="!#gallery">GALLERY </a></li>
+                    <li class="separator" role="presentation"><a href="!#residents">OUR RESIDENTS </a></li>
+                    <li class="separator" role="presentation"><a href="!#directions">MAPS & DIRECTIONS </a></li>
+                    <li role="presentation"><a href="/contactus">CONTACT US </a></li>
                 </ul>
+                
+                <p class="navbar-text navbar-right actions">
+                    <a href="" style="" data-toggle="modal">{{email}}</a>
+                    <a class="btn btn-default action-button modal-btn" href="" style="" data-toggle="modal" data-target="#loginModal">Admin Log In</a>
+                </p>
             </div>
         </div>
     </nav>
@@ -56,4 +61,75 @@
     </div>
     
     
-<!--NAVBAR END-->
+
+<!-- Modal -->
+  <div class="modal fade" id="loginModal" role="dialog" data-ng-controller="myCtrl">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #86110e; color: white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Admin Login</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+			<fieldset>
+				<hr class="colorgraph">
+				<div class="form-group container-fluid">
+                    <input type="email" class="form-control input-lg" placeholder="Email Address" data-ng-model="email" required>
+				</div>
+				<div class="form-group container-fluid">
+                    <input type="password" class="form-control input-lg" placeholder="Password" data-ng-model="password" required>
+				</div>
+				<span class="button-checkbox">
+					<a href="" class="btn btn-link pull-right" data-toggle="modal" data-target="#forgotpass">Forgot Password?</a>
+				</span>
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                        <button type="submit" class="btn btn-lg btn-success" value="Sign In" style="background-color: #86110e; color: white; width: 100%" data-ng-click="signInWithEmailAndPassword(email,password)">Login</button>
+					</div>
+					
+				</div>
+			</fieldset>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #86110e; color: white">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<div class="modal fade" id="forgotpass" role="dialog">
+    <div class="modal-dialog modal-sm">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #86110e; color: white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Forgot your password?</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+			<fieldset>
+				<hr class="colorgraph">
+				<div class="form-group container-fluid">
+                    <input type="email" class="form-control input-lg" placeholder="Email Address">
+				</div>
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                        <input type="submit" class="btn btn-lg btn-success" value="Send" style="background-color: #86110e; color: white; width: 100%">
+					</div>
+					
+				</div>
+			</fieldset>
+		</form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
