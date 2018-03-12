@@ -27,7 +27,7 @@
     
     
 </head>
-<body>
+<body data-ng-controller="myCtrl">
 
         
     <div>
@@ -42,6 +42,13 @@
     <script src="assets/js/angular-route.js"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    
+    
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>
     <script>
       // Initialize Firebase
       var config = {
@@ -54,12 +61,6 @@
       };
       firebase.initializeApp(config);
     </script>
-    <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-messaging.js"></script>
     <!--CUSTOM SCRIPTS-->
     <script src="assets/js/app.js"></script>
     <script src="assets/js/login.js"></script>
@@ -68,15 +69,12 @@
     <script src="rooms/rooms.js"></script>
     <script src="facilities/facilities.js"></script>
     <script src="rules/rules.js"></script>
-    <script src="virtual/virtual.js"></script>
     <script src="directions/directions.js"></script>
     <script src="apply/apply.js"></script>
     <script src="contact/contact.js"></script>
     <script src="residents/residents.js"></script>
     <script src="gallery/gallery.js"></script>
-    
-    
-<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularFire/2.3.0/angularfire.js"></script>
 
 </html>
 

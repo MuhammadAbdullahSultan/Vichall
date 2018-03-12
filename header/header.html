@@ -33,26 +33,25 @@
     </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav nav-left">
-                    <li class="separator" role="presentation"><a href="!#home">home </a></li>
+                    <li class="separator" role="presentation"><a href="#!home">home </a></li>
                     <li class="dropdown separator"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="">ABOUT US <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="!#message">Founder's message</a></li>
-                            <li role="presentation"><a href="!#rooms">Rooms</a></li>
-                            <li role="presentation"><a href="!#facilities">Facilities</a></li>
-                            <li role="presentation"><a href="!#rules">Rules & regulations</a></li>
-                            <li role="presentation"><a href="!#applyonline">Apply Online</a></li>
+                            <li role="presentation"><a href="#!message">Founder's message</a></li>
+                            <li role="presentation"><a href="#!rooms">Rooms</a></li>
+                            <li role="presentation"><a href="#!facilities">Facilities</a></li>
+                            <li role="presentation"><a href="#!rules">Rules & regulations</a></li>
+                            <li role="presentation"><a href="#!applyonline">Apply Online</a></li>
                         </ul>
                     </li>
-                    <li class="separator" role="presentation"><a href="!#virtualtour">VIRTUAL TOUR </a></li>
-                    <li class="separator" role="presentation"><a href="!#gallery">GALLERY </a></li>
-                    <li class="separator" role="presentation"><a href="!#residents">OUR RESIDENTS </a></li>
-                    <li class="separator" role="presentation"><a href="!#directions">MAPS & DIRECTIONS </a></li>
-                    <li role="presentation"><a href="/contactus">CONTACT US </a></li>
+                    <li class="separator" role="presentation"><a href="#!gallery">GALLERY </a></li>
+                    <li class="separator" role="presentation"><a href="#!residents">OUR RESIDENTS </a></li>
+                    <li class="separator" role="presentation"><a href="#!directions">MAPS & DIRECTIONS </a></li>
+                    <li role="presentation"><a href="#!contactus">CONTACT US </a></li>
                 </ul>
-                
                 <p class="navbar-text navbar-right actions">
-                    <a href="" style="" data-toggle="modal">{{email}}</a>
-                    <a class="btn btn-default action-button modal-btn" href="" style="" data-toggle="modal" data-target="#loginModal">Admin Log In</a>
+                    <a href="" style="">{{signin.email}}</a>
+                    <a class="btn btn-default action-button modal-btn" href="" style="" data-toggle="modal" data-target="#loginModal" data-ng-if="signin.state == false">Admin Log In</a>
+                    <a class="btn btn-default action-button modal-btn" href="" style="" data-ng-show="signin.state == true" data-ng-click="signout();">Logout</a>
                 </p>
             </div>
         </div>

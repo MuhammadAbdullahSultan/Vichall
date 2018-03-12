@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'home', 'founder', 'rooms', 'facilities', 'rules', 'virtual', 'directions', 'apply', 'contact', 'residents', 'gallery', 'firebase']);
+var app = angular.module('myApp', ['ngRoute', 'firebase' , 'home', 'founder', 'rooms', 'facilities', 'rules', 'directions', 'apply', 'contact', 'residents', 'gallery']);
 
 app.directive('headerFile', function () {
     return {
@@ -50,7 +50,7 @@ app.factory("Auth", ["$firebaseAuth",
   }
 ]);
 
-app.controller('myCtrl', ['$scope', '$firebaseObject', 'Auth', '$firebaseArray', function ($scope, firebase, $firebaseObject, Auth, $firebaseArray) {
+app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$firebaseArray', '$location', function ($scope, firebase, $firebaseObject, Auth, $firebaseArray, $location) {
         console.log("CONTROLLER FIRED UP");
         $scope.signin = {};
         $scope.signin.state = false;
@@ -64,17 +64,28 @@ app.controller('myCtrl', ['$scope', '$firebaseObject', 'Auth', '$firebaseArray',
             if (user) {
                 $scope.signin.state = true;
                 $scope.signin.uid = user.uid;
-                $scope.email = user.email;
+                $scope.signin.email = user.email;
                 console.log($scope.signin.uid);
+                
+                console.log(user.email);
+                console.log($scope.signin.email);
+                console.log($scope.signin.state);
                 
                 
             
                 
             } else {
-                $scope.signin.state = false
-                $scope.signin.uid = null
+                $scope.signin.state = false;
+                $scope.signin.uid = null;
             }
         })
+    
+    $scope.signout = function() {
+            Auth.$signOut();
+            location.reload();
+            console.log($scope.signin.email);
+            console.log($scope.signin.state);        
+    };
     
     // signin with email
         $scope.signInWithEmailAndPassword = function(email, password) {
@@ -89,14 +100,12 @@ app.controller('myCtrl', ['$scope', '$firebaseObject', 'Auth', '$firebaseArray',
                 
                 
                 list.$loaded().then(function(data) {
+                        $('#loginModal').modal('hide');
                 }).catch (function(error) {
                     console.log(error);
-//                toaster.pop({type: 'error', title: "Error", body: error});
                 });
             }).catch(function(error) {
-                                    console.log(error);
-
-//                toaster.pop({type: 'error', title: "Error", body: error.message});
+                console.log(error);
             });
             
             
