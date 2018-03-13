@@ -51,7 +51,6 @@ app.factory("Auth", ["$firebaseAuth",
 ]);
 
 app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$firebaseArray', '$location', function ($scope, firebase, $firebaseObject, Auth, $firebaseArray, $location) {
-        console.log("CONTROLLER FIRED UP");
         $scope.signin = {};
         $scope.signin.state = false;
         $scope.signin.uid = null;
@@ -67,10 +66,17 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
                 $scope.signin.email = user.email;
                 console.log($scope.signin.uid);
                 
-                console.log(user.email);
-                console.log($scope.signin.email);
-                console.log($scope.signin.state);
-                
+                var ref = firebase.database().ref();
+        var data = ref.child("Admin").child(user.uid);
+        var list = $firebaseObject(data);
+        
+//        $scope.information;
+        list.$loaded().then(function(data) {
+            
+            $scope.information = data.name;
+        }).catch (function(error) {
+                    
+                });                
                 
             
                 
@@ -79,6 +85,8 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
                 $scope.signin.uid = null;
             }
         })
+    
+    
     
     $scope.signout = function() {
             Auth.$signOut();
@@ -100,8 +108,13 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
                 
                 
                 list.$loaded().then(function(data) {
+                    console.log(data.name);
+                    $scope.loggedInName = data.name;
                         $('#loginModal').modal('hide');
                 }).catch (function(error) {
+                    if(error === "auth/user-not-found") {
+                        $scope.loginUserError = "User Not Found";
+                    }
                     console.log(error);
                 });
             }).catch(function(error) {

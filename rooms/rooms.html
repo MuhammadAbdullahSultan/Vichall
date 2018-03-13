@@ -1,6 +1,13 @@
 <header-file></header-file>
 <hr>
 <div class="container">
+    <div class="row">
+        <div class="container">
+            <a class="btn btn-default action-button col-xs-12 col-sm-3 col-md-3 col-lg-3" href="" style="" data-ng-show="signin.state == true" data-target="#addRoomModal" data-toggle="modal">Add +</a>
+        </div>
+            
+    
+    </div>
     <div class="panel panel-default">
       <!-- Default panel contents -->
       <div class="panel-heading" style="background-color: #430807; color: white">Rooms</div>
@@ -14,56 +21,38 @@
   <thead>
     <tr>
       <th scope="col">Type of room</th>
-      <th scope="col">Duration</th>
-      <th scope="col">Price for Air-conditioned room</th>
-      <th scope="col">Price for room with Fan</th>
+      <th scope="col">Daily Stay</th>
+      <th scope="col">1-2 Months</th>
+      <th scope="col">3-4 Months</th>
+      <th scope="col">5-6 Months</th>
+      <th scope="col" data-ng-if="signin.state == true"></th>
     </tr>
   </thead>
   <tbody>
-    <tr class="table-active">
-      <th scope="row">Twin Sharing room</th>
-      <td>1 month</td>
-      <td>RM800</td>
-      <td>RM680</td>
-    </tr>
-      
-      <tr class="table-active">
-      <th scope="row">Twin Sharing room</th>
-      <td>2 month</td>
-      <td>RM750</td>
-      <td>RM630</td>
-    </tr>
-      
-      <tr class="table-active">
-      <th scope="row">Twin Sharing room</th>
-      <td>3 month</td>
-      <td>RM700</td>
-      <td>RM580</td>
-    </tr>
-      
-      <tr class="table-active">
-      <th scope="row">Twin Sharing room</th>
-      <td>4 month</td>
-      <td>RM700</td>
-      <td>RM580</td>
-    </tr>
-      
-      <tr class="table-active">
-      <th scope="row">Twin Sharing room</th>
-      <td>6 months or more</td>
-      <td>RM650</td>
-      <td>RM530</td>
-    </tr>
-      
-      <tr class="table-active">
-      <th scope="row">Single room</th>
-      <td>6 months or more</td>
-      <td>RM1000</td>
-      <td>Not Available</td>
+    <tr class="table-active" data-ng-repeat="roomInfo in roomsJson">
+      <th scope="row">{{roomInfo.tor}}</th>
+      <td>RM {{roomInfo.daily}}</td>
+      <td>RM {{roomInfo.f2m}}</td>
+      <td>RM {{roomInfo.three24}}</td>
+      <td>RM {{roomInfo.five26}}</td>
+<!--      <td data-ng-show="signin.state == true"><a class="btn btn-default action-button" href="" style="" data-ng-show="signin.state == true" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(roomInfo.id);">Edit</a></td>-->
+    <td data-ng-show="signin.state == true"><div class="btn-group">
+  <button type="button" class="btn btn-danger">Options</button>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(roomInfo.id);">Edit</a></li>
+    <li><a href="" data-ng-click="update(roomInfo.id); delete();">Delete</a></li>
+    
+  </ul>
+</div></td>
     </tr>
   </tbody>
                 
-</table> 
+</table>
+             
         </div>
         <hr>
         <div class="jumbotron">
@@ -77,4 +66,113 @@
     </div>
 </div>
 
+
+<!-- Modal For adding to table-->
+  <div class="modal fade" id="addRoomModal" role="dialog" data-ng-controller="roomsCtrl">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #86110e; color: white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add room</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+			<fieldset>
+				<hr class="colorgraph">
+				<div class="form-group container-fluid">
+                    <input type="text" class="form-control input-lg" placeholder="Type of room" data-ng-model="tor" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" placeholder="Daily Price" data-ng-model="daily" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" placeholder="First 2 months" data-ng-model="f2m" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" placeholder="3 to 4 months " data-ng-model="three24" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" placeholder="5 to 6 months" data-ng-model="five26" required>
+				</div>
+
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                        <button type="submit" class="btn btn-lg btn-success" value="Sign In" style="background-color: #86110e; color: white; width: 100%" data-ng-click="addToTable();">Add</button>
+					</div>
+					
+				</div>
+			</fieldset>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #86110e; color: white">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<!-- Modal For Editing table-->
+  <div class="modal fade" id="editRoomModal" role="dialog" data-ng-controller="roomsCtrl">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #86110e; color: white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add room</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+			<fieldset>
+				<hr class="colorgraph">
+				<div class="form-group container-fluid">
+                    <input type="text" class="form-control input-lg" placeholder="Type of room" data-ng-model="rooms[indexValue].tor" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="text" class="form-control input-lg" data-ng-model="rooms[indexValue].daily" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="text" class="form-control input-lg" data-ng-model="rooms[indexValue].f2m" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" data-ng-model="rooms[indexValue].three24" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" data-ng-model="rooms[indexValue].five26" required>
+				</div>
+
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                        <button type="submit" class="btn btn-lg btn-success" value="Sign In" style="background-color: #86110e; color: white; width: 100%" data-ng-click="editTable();">Save Changes</button>
+					</div>
+					
+				</div>
+			</fieldset>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #86110e; color: white">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
 <footer-file></footer-file>
+
+
+
+
