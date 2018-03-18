@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="assets/css/orderedlist.css"/>
     <link rel="stylesheet" href="assets/css/gallery.css"/>
     <link rel="stylesheet" href="assets/css/login.css"/>
+    <link rel="stylesheet" href="assets/css/toaster.min.css"/>
     
     
 </head>
@@ -32,6 +33,7 @@
         
     <div>
         <div data-ng-view></div>
+        <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-top-right'}"></toaster-container>
     </div>
         
 
@@ -42,8 +44,6 @@
     <script src="assets/js/angular-route.js"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-    
-    
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
@@ -60,8 +60,8 @@
       };
       firebase.initializeApp(config);
       firebase.storage();
-
     </script>
+    <script src="assets/js/toaster.min.js"></script>
     <!--CUSTOM SCRIPTS-->
     <script src="assets/js/app.js"></script>
     <script src="assets/js/login.js"></script>

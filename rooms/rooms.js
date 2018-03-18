@@ -10,7 +10,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
-app.controller('roomsCtrl', ['$scope', '$firebaseArray', '$filter', function ($scope, $firebaseArray, $filter) {
+app.controller('roomsCtrl', ['$scope', '$firebaseArray', '$filter', 'toaster', function ($scope, $firebaseArray, $filter, toaster) {
     $scope.roomsJson = [];
     var ref = firebase.database().ref();
     $scope.rooms = $firebaseArray(ref.child('rooms'));
@@ -40,7 +40,8 @@ app.controller('roomsCtrl', ['$scope', '$firebaseArray', '$filter', function ($s
                 three24: $scope.three24,
                 five26: $scope.five26
             });
-            
+            toaster.pop({type: 'success', title: "Room Added"});
+
             location.reload();
             $scope.tor = undefined;
             $scope.duration = undefined;
@@ -57,7 +58,6 @@ app.controller('roomsCtrl', ['$scope', '$firebaseArray', '$filter', function ($s
             var item = $scope.rooms[$scope.indexValue];
                     $scope.rooms.$remove(item).then(function (deletedData) {
                         
-                        console.log(deletedData);
                         
                     });
             
@@ -70,7 +70,6 @@ app.controller('roomsCtrl', ['$scope', '$firebaseArray', '$filter', function ($s
     
     $scope.editTable = function () {
         $scope.rooms.$save($scope.indexValue).then(function (data) {
-            console.log("Success");
         });
         location.reload();
     }

@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'firebase' , 'home', 'founder', 'rooms', 'facilities', 'rules', 'directions', 'apply', 'contact', 'residents', 'gallery']);
+var app = angular.module('myApp', ['ngRoute', 'firebase' , 'home', 'founder', 'rooms', 'facilities', 'rules', 'directions', 'apply', 'contact', 'residents', 'gallery', 'toaster']);
 
 app.directive('headerFile', function () {
     return {
@@ -50,7 +50,7 @@ app.factory("Auth", ["$firebaseAuth",
   }
 ]);
 
-app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$firebaseArray', '$location', function ($scope, firebase, $firebaseObject, Auth, $firebaseArray, $location) {
+app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$firebaseArray', '$location','toaster', function ($scope, firebase, $firebaseObject, Auth, $firebaseArray, $location, toaster) {
         $scope.signin = {};
         $scope.signin.state = false;
         $scope.signin.uid = null;
@@ -89,10 +89,9 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
     
     
     $scope.signout = function() {
-            Auth.$signOut();
-            location.reload();
-            console.log($scope.signin.email);
-            console.log($scope.signin.state);        
+        Auth.$signOut(); 
+        toaster.pop({type: 'success', title: "Logged out"});
+
     };
     
     // signin with email
@@ -111,10 +110,12 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
                     console.log(data.name);
                     $scope.loggedInName = data.name;
                         $('#loginModal').modal('hide');
+                    toaster.pop({type: 'success', title: "Logged In"});
                 }).catch (function(error) {
                     if(error === "auth/user-not-found") {
-                        $scope.loginUserError = "User Not Found";
+                        toaster.pop({type: 'danger', title: "User Not Found"});
                     }
+                    toaster.pop({type: 'danger', title: "Error", body: error});
                     console.log(error);
                 });
             }).catch(function(error) {

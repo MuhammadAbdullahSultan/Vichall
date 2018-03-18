@@ -12,7 +12,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 
 
-app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', function ($scope, firebase, $firebaseArray) {
+app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster', function ($scope, firebase, $firebaseArray, toaster) {
     // GALLERY CODE
       jQuery(document).ready(function($) {
  
@@ -66,7 +66,8 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', function 
                 });
                 
                 upload.value = percentage;
-                
+                toaster.pop({type: 'success', title: "Image uploaded Successfully"});
+
                 
               console.log(snapshot.downloadURL);
 
@@ -81,9 +82,9 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', function 
             
             var item = $scope.vicHallImages[$scope.indexValue];
             $scope.vicHallImages.$remove(item).then(function (deletedData) {
-
             });
-            
+            toaster.pop({type: 'success', title: "OK", body: $scope.vicHallImages[$scope.indexValue].filename + " has been deleted"});
+
           // File deleted successfully
         }).catch(function(error) {
           console.log(error);
