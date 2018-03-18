@@ -9,6 +9,9 @@ app.config(['$routeProvider', function ($routeProvider) {
         controller: 'galleryCtrl',
     });
 }]);
+
+
+
 app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', function ($scope, firebase, $firebaseArray) {
     // GALLERY CODE
       jQuery(document).ready(function($) {
