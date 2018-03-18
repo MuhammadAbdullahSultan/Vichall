@@ -61,7 +61,8 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', function 
                 var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 
                 $scope.vicHallImages.$add({
-                    url: snapshot.downloadURL
+                    url: snapshot.downloadURL,
+                    filename: file.name
                 });
                 
                 upload.value = percentage;
@@ -71,6 +72,27 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', function 
 
             });
         });
+    
+    $scope.deleteImageVicHalls = function () {
+        var desertRef = storageRef.child("images/vichall/" + $scope.vicHallImages[$scope.indexValue].filename);
+        console.log(desertRef);
+        // Delete the file
+        desertRef.delete().then(function() {
+            
+            var item = $scope.vicHallImages[$scope.indexValue];
+            $scope.vicHallImages.$remove(item).then(function (deletedData) {
+
+            });
+            
+          // File deleted successfully
+        }).catch(function(error) {
+          console.log(error);
+        });
+    }
+    
+    $scope.checker = function () {
+        console.log($scope.vicHallImages[$scope.indexValue].url);
+    }
     
     
     $scope.update = function (id) {
