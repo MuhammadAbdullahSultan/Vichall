@@ -1,13 +1,8 @@
-.hide-bullets {
-    list-style:none;
-    margin-left: -40px;
-    margin-top:20px;
+.zoom {
+    transition: transform .2s; /* Animation */
+    
 }
 
-.thumbnail {
-    padding: 0;
-}
-
-.carousel-inner>.item>img, .carousel-inner>.item>a>img {
-    width: 100%;
+.zoom:hover {
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
