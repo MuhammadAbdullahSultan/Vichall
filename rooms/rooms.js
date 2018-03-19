@@ -57,7 +57,11 @@ app.controller('roomsCtrl', ['$scope', '$firebaseArray', '$filter', 'toaster', f
         if (r == true) {
             var item = $scope.rooms[$scope.indexValue];
                     $scope.rooms.$remove(item).then(function (deletedData) {
-                        
+                        var item = $scope.rooms[$scope.indexValue];
+                        $scope.rooms.$remove(item).then(function (deletedData) {
+
+
+                        });
                         
                     });
             
