@@ -3,7 +3,7 @@
 /*global angular */
 // DEFINING ANGULAR MODULE ngCookies
 /*jshint sub:true*/
-var app = angular.module('myApp', ['ngRoute', 'firebase' , 'home', 'founder', 'rooms', 'facilities', 'rules', 'directions', 'apply', 'contact', 'residents', 'gallery', 'toaster']);
+var app = angular.module('myApp', ['ngRoute', 'firebase' , 'home', 'founder', 'rooms', 'facilities', 'rules', 'directions', 'apply', 'contact', 'residents', 'gallery', 'notifications', 'toaster']);
 
 app.directive('headerFile', function () {
     return {
@@ -51,12 +51,35 @@ app.factory("Auth", ["$firebaseAuth",
 ]);
 
 app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$firebaseArray', '$location','toaster', function ($scope, firebase, $firebaseObject, Auth, $firebaseArray, $location, toaster) {
+    
+    // EMAIL SENDING
+//    
+//    $('#contact-form').submit (function (e) {
+//      var email = document.getElementById('inputEmail');
+//    var message = document.getElementById('inputMessage');
+//      if(!email.value || !message.value) {
+//          console.log("Error");
+//          return false
+//      } else {
+//          $.ajax({
+//        method: 'POST',
+//        url: '//formspree.io/abdullahsultan14@gmail.com',
+//        data: $('#contact-form').serialize(),
+//        datatype: 'json'                  
+//         })
+//          e.preventDefault();
+//        $(this).get(0).reset();
+//        toaster.pop({type: 'success', title: "Your feedback has been recieved", body: "We will get back to you as soon as possible"});
+//      }
+//  });
+    
+    // AUTH
         $scope.signin = {};
         $scope.signin.state = false;
         $scope.signin.uid = null;
         var ref = firebase.database().ref();
         $scope.userStates = $firebaseArray(ref.child("Admin"));
-    
+        $scope.notifications = $firebaseArray(ref.child("Notifications"));
     // CHECKING FOR AUTHORIZATION
     Auth.$onAuthStateChanged(function(user) {
 
@@ -93,6 +116,18 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
         toaster.pop({type: 'success', title: "Logged out"});
 
     };
+    
+    // Sending Notification to Admin
+    
+    $scope.sendNotification = function () {
+        $scope.notifications.$add({
+                email: $scope.tosendEmail,
+                message: $scope.message
+            });
+            toaster.pop({type: 'success', title: "Email Sent", body: "We will get back to you as soon as possible"});
+            $scope.tosendEmail = undefined;
+            $scope.message = undefined;
+    }
     
     // signin with email
         $scope.signInWithEmailAndPassword = function(email, password) {

@@ -1,0 +1,55 @@
+<header-file></header-file>
+
+<style>
+    .clickable {
+        cursor: pointer;   
+    }
+</style>
+<hr/>
+<div class="container-fluid">
+<h4>Unread Messages <span class="clickable"><i class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#vicHallPanel"></i></span>
+</h4>
+</div>
+<div class="container-fluid well">
+            <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Message</th>
+      <th scope="col" data-ng-if="signin.state == true"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active" data-ng-repeat="not in notifications">
+      <td><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{not.email}}" target="_blank">{{not.email}}</a></td>
+      <td scope="row">{{not.message}}</td>
+      <td><a class="btn btn-success" href="" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(not.$id);">Mark as Read</a></td>
+    </tr>
+  </tbody>
+                
+</table>
+             
+        </div>
+
+<div class="container-fluid well">
+            <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Message</th>
+      <th scope="col" data-ng-if="signin.state == true"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active" data-ng-repeat="not in notifications">
+      <td><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{not.email}}" target="_blank">{{not.email}}</a></td>
+      <td scope="row">{{not.message}}</td>
+      <td><a class="btn btn-danger" href="" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(roomInfo.id);">Delete</a></td>
+    </tr>
+  </tbody>
+                
+</table>
+             
+        </div>
+
+<footer-file></footer-file>

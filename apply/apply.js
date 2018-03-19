@@ -6,7 +6,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/applyonline', {
         title: 'Apply Online',
         templateUrl: 'apply/apply.html',
-        controller: 'apply',
+        controller: 'applyCtrl',
     });
 }]);
 
