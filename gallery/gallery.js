@@ -45,8 +45,6 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
     var ref = firebase.database().ref();
 
     $scope.vicHallImages = $firebaseArray(ref.child('images/vichall/'));
-
-    console.log($scope.vicHallImages);
     
     var progressbar = document.getElementById('upload');
         var fileButton = document.getElementById("fileButton");
@@ -69,14 +67,12 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 toaster.pop({type: 'success', title: "Image uploaded Successfully"});
 
                 
-              console.log(snapshot.downloadURL);
 
             });
         });
     
     $scope.deleteImageVicHalls = function () {
         var desertRef = storageRef.child("images/vichall/" + $scope.vicHallImages[$scope.indexValue].filename);
-        console.log(desertRef);
         // Delete the file
         desertRef.delete().then(function() {
             
@@ -87,19 +83,14 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
 
           // File deleted successfully
         }).catch(function(error) {
-          console.log(error);
+            toaster.pop({type: 'danger', title: "Error", body: error});
         });
     }
     
-    $scope.checker = function () {
-        console.log($scope.vicHallImages[$scope.indexValue].url);
-    }
     
     
     $scope.update = function (id) {
-        console.log(id);
         $scope.indexValue = $scope.vicHallImages.findIndex(vicHallImages => vicHallImages.$id === id);
-        console.log($scope.indexValue);
     };
     
     

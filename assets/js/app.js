@@ -86,9 +86,7 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
             if (user) {
                 $scope.signin.state = true;
                 $scope.signin.uid = user.uid;
-                $scope.signin.email = user.email;
-                console.log($scope.signin.uid);
-                
+                $scope.signin.email = user.email;                
                 var ref = firebase.database().ref();
         var data = ref.child("Admin").child(user.uid);
         var list = $firebaseObject(data);
@@ -142,7 +140,6 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
                 
                 
                 list.$loaded().then(function(data) {
-                    console.log(data.name);
                     $scope.loggedInName = data.name;
                         $('#loginModal').modal('hide');
                     toaster.pop({type: 'success', title: "Logged In"});
@@ -151,10 +148,9 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
                         toaster.pop({type: 'danger', title: "User Not Found"});
                     }
                     toaster.pop({type: 'danger', title: "Error", body: error});
-                    console.log(error);
                 });
             }).catch(function(error) {
-                console.log(error);
+                toaster.pop({type: 'danger', title: "Error", body: error});
             });
             
             

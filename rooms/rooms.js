@@ -17,19 +17,17 @@ app.controller('roomsCtrl', ['$scope', '$firebaseArray', '$filter', 'toaster', f
     
     $scope.rooms.$loaded()
       .then(function(x) {
-        console.log(x);
     angular.forEach (x, function(rm) {
                 var roomsJson = { "tor": rm.tor, "daily": rm.daily, "f2m": rm.f2m, "three24": rm.three24, "five26": rm.five26 , "id": rm.$id};
                 $scope.roomsJson.push(roomsJson);
             });
     })
       .catch(function(error) {
-        console.log("Error:", error);
+            toaster.pop({type: 'danger', title: "Error", body: error});
       });
         
         
     
-    console.log($scope.roomsJson);
     
     $scope.addToTable = function () {
 
@@ -80,9 +78,7 @@ app.controller('roomsCtrl', ['$scope', '$firebaseArray', '$filter', 'toaster', f
     
     
     $scope.update = function (id) {
-        console.log(id);
         $scope.indexValue = $scope.rooms.findIndex(rooms => rooms.$id === id);
-        console.log($scope.indexValue);
     };
     
 }]);
