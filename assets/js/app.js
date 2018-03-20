@@ -80,6 +80,7 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
         var ref = firebase.database().ref();
         $scope.userStates = $firebaseArray(ref.child("Admin"));
         $scope.notifications = $firebaseArray(ref.child("Notifications"));
+        $scope.numNotifications = $firebaseArray(ref.child("numNotifications"));
     // CHECKING FOR AUTHORIZATION
     Auth.$onAuthStateChanged(function(user) {
 
@@ -117,11 +118,69 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
     
     // Sending Notification to Admin
     
+    $scope.press = function () {
+        console.log("PRESSED");
+        
+        $scope.numNotifications.$loaded()
+          .then(function(x) {
+            console.log(x);
+            console.log(x[0].$value);
+            var currentValue = x[0].$value;
+            var newValue = (x[0].$value) + 1;
+            console.log(newValue);
+            x[0].$value = newValue;
+            $scope.numNotifications.$save(0).then(function (data) {
+            });
+          })
+          .catch(function(error) {
+            console.log("Error:", error);
+          });
+//        for(var i = 0 ; i < $scope.numNotifications.length ; i++) {
+//        var count = $scope.numNotifications[i].Value;
+//        console.log("Hi " + count);
+//    }
+    }
+    
+    $scope.resetNotifications = function () {
+        $scope.numNotifications.$loaded()
+          .then(function(x) {
+            x[0].$value = 0;
+            $scope.numNotifications.$save(0).then(function (data) {
+            });
+          })
+          .catch(function(error) {
+            console.log("Error:", error);
+          });
+    }
+    
+    $scope.numNotifications.$loaded()
+          .then(function(x) {
+            $scope.notificationNum = x[0].$value;
+          })
+          .catch(function(error) {
+            console.log("Error:", error);
+          });
     $scope.sendNotification = function () {
+        $scope.numNotifications.$loaded()
+          .then(function(x) {
+            var currentValue = x[0].$value;
+            var newValue = (x[0].$value) + 1;
+            console.log(newValue);
+            x[0].$value = newValue;
+            $scope.numNotifications.$save(0).then(function (data) {
+            });
+          })
+          .catch(function(error) {
+            console.log("Error:", error);
+          });
+        
         $scope.notifications.$add({
                 email: $scope.tosendEmail,
                 message: $scope.message
             });
+//        firebase.database().ref('numNotifications').set({
+//          });
+        
             toaster.pop({type: 'success', title: "Email Sent", body: "We will get back to you as soon as possible"});
             $scope.tosendEmail = undefined;
             $scope.message = undefined;
@@ -152,9 +211,6 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
             }).catch(function(error) {
                 toaster.pop({type: 'danger', title: "Error", body: error});
             });
-            
-            
-            
             
         };
 }]);

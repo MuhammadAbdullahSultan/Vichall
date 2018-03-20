@@ -61,7 +61,7 @@
                 <ul class="nav navbar-nav navbar-right" data-ng-if="signin.state == true">
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="">{{information}} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li role="presentation"><a href="#!notifications">Notifications</a></li>
+                            <li role="presentation"><a href="#!notifications" data-ng-click="resetNotifications();">Notifications <span class="badge" data-ng-if="notificationNum > 0">{{notificationNum}}</span></a></li>
                             <li role="presentation"><a href="" data-ng-click="signout();">Logout</a></li>
                         </ul>
                     </li>
