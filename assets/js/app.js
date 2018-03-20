@@ -213,5 +213,22 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
             });
             
         };
+    
+    // Reset Password
+    $scope.resetPass = function () {
+        
+        if($scope.resetEmail == undefined) {
+            toaster.pop({type: 'error', title: "Error", body: "Please enter an email"});
+            return;
+        }
+    Auth.$sendPasswordResetEmail($scope.resetEmail).then(function() {
+        toaster.pop({type: 'success', title: "Success", body: 'A password reset email has been sent to ' + $scope.resetEmail });
+        $scope.resetEmail = undefined;
+        $("#forgotpass").modal("hide");
+        
+    }).catch(function(error) {
+        toaster.pop({type: 'error', title: "Error", body: error});
+    });
+    }
 }]);
 
