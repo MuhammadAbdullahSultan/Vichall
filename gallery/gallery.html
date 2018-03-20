@@ -3,7 +3,7 @@
    #upload {
    -webkit-appearance : none;
    appearance: none;
-   width: 50%;
+   width: 100%;
    margin-bottom: 10px;
    }
    /* The Modal (background) */
@@ -76,21 +76,38 @@
    margin-top: -20px;
    font-size: 15px;
    }
+    
+    .zoomless {
+    transition: background-color 0.5s ease; /* Animation */
+    
+}
+
+.zoomless:hover {
+    background-color: rgb(67, 8, 7);
+    color: white;/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
 </style>
 <hr>
-<div class="jumbotron well">
-   <div class="container-fluid">
+<div class="">
+   <div class="container">
+       <h1><strong>Gallery</strong></h1>
+       <hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #86110e;
+    margin: 1em 0;
+    padding: 0;">
       <div class="panel panel-danger">
-         <div class="panel-heading">
+         <div class="panel-heading clickable zoomless" data-toggle="collapse" data-target="#vicHallPanel">
             <h3 class="panel-title">Victoria Hall</h3>
-            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down" data-toggle="collapse" data-target="#vicHallPanel"></i></span>
+            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
          </div>
          <div class="panel-body collapse filter-panel" id="vicHallPanel">
             <div class="row container-fluid">
                <button class="btn btn-danger" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addToVictoriaHall">Add Image</button>
-               <hr/>
+                <hr data-ng-if="signin.state == true">
                <br>
-               <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2" data-ng-repeat="images in vicHallImages">
+               <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" data-ng-repeat="images in vicHallImages">
                   <div class="panel panel-danger">
                      <div class="panel-heading" data-ng-if="signin.state == true">
                         <div class="panel-title">
@@ -170,8 +187,13 @@
             <h4 class="modal-title">Add Image under <strong>VicHall</strong> folder</h4>
          </div>
          <div class="modal-body">
-            <progress value="0" max="100" id="upload">0%</progress>
-            <input type="file" class="file" id="fileButton">      
+             <div class="row container-fluid">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <progress value="0" max="100" id="upload">0%</progress>
+                    <input type="file" class="file" id="fileButton">      
+
+                 </div>
+             </div>
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
