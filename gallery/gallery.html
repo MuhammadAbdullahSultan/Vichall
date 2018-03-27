@@ -19,75 +19,9 @@
    width: 100%;
    margin-bottom: 10px;
     }
-   /* The Modal (background) */
-   .modal {
-   display: none; /* Hidden by default */
-   position: fixed; /* Stay in place */
-   padding-top: 100px; /* Location of the box */
-   left: 0;
-   top: 0;
-   width: 100%; /* Full width */
-   height: 100%; /* Full height */
-   overflow: auto; /* Enable scroll if needed */
-   background-color: rgb(0,0,0); /* Fallback color */
-   background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-   }
-   /* Modal Content (Image) */
-   .modal-content {
-   margin: auto;
-   display: block;
-   width: 80%;
-   max-width: 700px;
-   max-height: 800px;
-   }
-   /* Caption of Modal Image (Image Text) - Same Width as the Image */
-   #caption {
-   margin: auto;
-   display: block;
-   width: 80%;
-   max-width: 700px;
-   text-align: center;
-   color: #ccc;
-   padding: 10px 0;
-   height: 150px;
-   }
-   /* Add Animation - Zoom in the Modal */
-   .modal-content, #caption { 
-   animation-name: zoom;
-   animation-duration: 0.6s;
-   }
-   @keyframes zoom {
-   from {transform:scale(0)} 
-   to {transform:scale(1)}
-   }
-   /* The Close Button */
-   .close {
-   position: absolute;
-   top: 15px;
-   right: 35px;
-   color: #f1f1f1;
-   font-size: 40px;
-   font-weight: bold;
-   transition: 0.3s;
-   }
-   .close:hover,
-   .close:focus {
-   color: #bbb;
-   text-decoration: none;
-   cursor: pointer;
-   }
-   /* 100% Image Width on Smaller Screens */
-   @media only screen and (max-width: 700px){
-   .modal-content {
-   width: 100%;
-   }
-   }
+   
    .clickable{
    cursor: pointer;   
-   }
-   .panel-heading span {
-   margin-top: -20px;
-   font-size: 15px;
    }
     
     .zoomless {
@@ -99,6 +33,10 @@
     background-color: rgb(67, 8, 7);
     color: white;/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
+    .panel-heading span {
+   margin-top: -20px;
+   font-size: 15px;
+   }
 </style>
 <hr>
 <div class="">
@@ -128,7 +66,7 @@
                         </div>
                      </div>
                      <div class="panel-image">
-                        <img src="{{images.url}}" class="panel-image-preview zoom" height="200" width="50%" data-toggle="modal" data-target="#myModal" data-ng-click="update(images.$id);"/>                    
+                        <img src="{{images.url}}" class="panel-image-preview zoom" height="300" data-toggle="modal" data-target="#myModal" data-ng-click="update(images.$id);"/>                    
                      </div>
                   </div>
                </div>
@@ -154,7 +92,7 @@
                         </div>
                      </div>
                      <div class="panel-image">
-                        <img src="{{images.url}}" class="panel-image-preview zoom" height="200" width="50%" data-toggle="modal" data-target="#myModal" data-ng-click="updateResidents(images.$id);"/>                    
+                        <img src="{{images.url}}" class="panel-image-preview zoom" height="300" data-toggle="modal" data-target="#residentsModal" data-ng-click="updateResidents(images.$id);"/>
                      </div>
                   </div>
                </div>
@@ -180,7 +118,7 @@
                         </div>
                      </div>
                      <div class="panel-image">
-                        <img src="{{images.url}}" class="panel-image-preview zoom" height="200" width="50%" data-toggle="modal" data-target="#myModal" data-ng-click="updateEvents(images.$id);"/>                    
+                        <img src="{{images.url}}" class="panel-image-preview zoom" height="300" data-toggle="modal" data-target="#eventsModal" data-ng-click="updateEvents(images.$id);"/>                    
                      </div>
                   </div>
                </div>
@@ -202,8 +140,18 @@
          <div class="modal-body">
              <div class="row container-fluid">
                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <progress value="0" max="100" id="upload">0%</progress>
-                    <input type="file" class="file" id="fileButton">      
+                     <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Title" data-ng-model="VicHallImageTitle" required>
+				</div>
+                     
+                     <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="VicHallImageDescription" required>
+				</div>
+                     <div data-ng-hide="VicHallImageTitle == undefined || VicHallImageDescription == undefined">
+                         <progress value="0" max="100" id="upload">0%</progress>
+                        <input type="file" class="file" id="fileButton">
+                     </div>
+                          
 
                  </div>
              </div>
@@ -226,8 +174,17 @@
          <div class="modal-body">
              <div class="row container-fluid">
                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <progress value="0" max="100" id="uploadResidents">0%</progress>
-                    <input type="file" class="file" id="fileButtonResidents">      
+                     <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Title" data-ng-model="VicHallImageTitle" required>
+				</div>
+                     
+                     <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="VicHallImageDescription" required>
+				</div>
+                     <div data-ng-hide="VicHallImageTitle == undefined || VicHallImageDescription == undefined">
+                         <progress value="0" max="100" id="upload">0%</progress>
+                        <input type="file" class="file" id="fileButtonResidents">
+                     </div>      
 
                  </div>
              </div>
@@ -263,6 +220,89 @@
    </div>
 </div>
 <div id="myModal" class="modal">
-   <span class="close" data-dismiss="modal">&times;</span>
-   <img src="{{vicHallImages[indexValue].url}}" class="modal-content">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">{{vicHallImages[indexValue].title}}</h4>
+         </div>
+         <div class="modal-body">
+             <div class="container-fluid">
+                       <img src="{{vicHallImages[indexValue].url}}" class="img-responsive modal-content">
+    <h1>Description</h1>
+             <hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #86110e;
+    margin: 1em 0;
+    padding: 0;">
+        
+            <h4><i>{{vicHallImages[indexValue].description}}</i></h4>
+             </div>
+         </div>
+         <div class="modal-footer">
+             
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div id="residentsModal" class="modal">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Title</h4>
+         </div>
+         <div class="modal-body">
+             <div class="container-fluid">
+                       <img src="{{residentsImages[indexValueResidents].url}}" class="img-responsive modal-content">
+    <h1>Description</h1>
+             <hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #86110e;
+    margin: 1em 0;
+    padding: 0;">
+
+             </div>
+         </div>
+         <div class="modal-footer">
+             
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<div id="eventsModal" class="modal">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Title</h4>
+         </div>
+         <div class="modal-body">
+             <div class="container-fluid">
+                       <img src="{{eventsImages[indexValueEvents].url}}" class="img-responsive modal-content">
+    <h1>Description</h1>
+             <hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #86110e;
+    margin: 1em 0;
+    padding: 0;">
+
+             </div>
+         </div>
+         <div class="modal-footer">
+             
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
 </div>

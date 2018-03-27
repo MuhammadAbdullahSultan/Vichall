@@ -60,7 +60,9 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 
                 $scope.vicHallImages.$add({
                     url: snapshot.downloadURL,
-                    filename: file.name
+                    filename: file.name,
+                    title: $scope.VicHallImageTitle,
+                    description: $scope.VicHallImageDescription
                 });
                 
                 upload.value = percentage;
@@ -111,7 +113,9 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 
                 $scope.residentsImages.$add({
                     url: snapshot.downloadURL,
-                    filename: file.name
+                    filename: file.name,
+                    title: $scope.residentsImageTitle,
+                    description: $scope.residentsImageDescription
                 });
                 
                 uploadResidents.value = percentage;
@@ -162,7 +166,9 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 
                 $scope.eventsImages.$add({
                     url: snapshot.downloadURL,
-                    filename: file.name
+                    filename: file.name,
+                    title: $scope.eventsImageTitle,
+                    description: $scope.eventsImageDescription
                 });
                 
                 uploadEvents.value = percentage;
