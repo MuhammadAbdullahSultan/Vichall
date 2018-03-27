@@ -66,7 +66,7 @@
                         </div>
                      </div>
                      <div class="panel-image">
-                        <img src="{{images.url}}" class="panel-image-preview zoom" height="300" data-toggle="modal" data-target="#myModal" data-ng-click="update(images.$id);"/>                    
+                        <img src="{{images.url}}" class="panel-image-preview zoom" height="200" data-toggle="modal" data-target="#myModal" data-ng-click="update(images.$id);"/>                    
                      </div>
                   </div>
                </div>
@@ -175,14 +175,14 @@
              <div class="row container-fluid">
                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                      <div class="form-group">
-                    <input type="text" class="form-control input-lg" placeholder="Title" data-ng-model="VicHallImageTitle" required>
+                    <input type="text" class="form-control input-lg" placeholder="Title" data-ng-model="residentsImageTitle" required>
 				</div>
                      
                      <div class="form-group">
-                    <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="VicHallImageDescription" required>
+                    <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="residentsImageDescription" required>
 				</div>
-                     <div data-ng-hide="VicHallImageTitle == undefined || VicHallImageDescription == undefined">
-                         <progress value="0" max="100" id="upload">0%</progress>
+                     <div data-ng-hide="residentsImageTitle == undefined || VicHallImageDescription == residentsImageDescription">
+                         <progress value="0" max="100" id="uploadResidents">0%</progress>
                         <input type="file" class="file" id="fileButtonResidents">
                      </div>      
 
@@ -207,9 +207,17 @@
          <div class="modal-body">
              <div class="row container-fluid">
                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <progress value="0" max="100" id="uploadEvents">0%</progress>
-                    <input type="file" class="file" id="fileButtonEvents">      
-
+                     <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Title" data-ng-model="eventsImageTitle" required>
+				</div>
+                     
+                     <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="eventsImageDescription" required>
+				</div>
+                     <div data-ng-hide="residentsImageTitle == undefined || VicHallImageDescription == residentsImageDescription">
+                        <progress value="0" max="100" id="uploadEvents">0%</progress>
+                        <input type="file" class="file" id="fileButtonEvents">
+                     </div>  
                  </div>
              </div>
          </div>
