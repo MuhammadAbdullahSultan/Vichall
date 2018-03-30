@@ -15,11 +15,18 @@
     
     #uploadEvents {
         -webkit-appearance : none;
-   appearance: none;
-   width: 100%;
-   margin-bottom: 10px;
+    appearance: none;
+    width: 100%;
+    margin-bottom: 10px;
     }
-   
+    
+    #uploadRoomsImage {
+        -webkit-appearance : none;
+       appearance: none;
+       width: 100%;
+       margin-bottom: 10px;
+    }
+
    .clickable{
    cursor: pointer;   
    }
@@ -48,6 +55,7 @@
     border-top: 1px solid #86110e;
     margin: 1em 0;
     padding: 0;">
+<!--       VICTORIA HALL PANEL-->
       <div class="panel panel-danger">
          <div class="panel-heading clickable zoomless" data-toggle="collapse" data-target="#vicHallPanel">
             <h3 class="panel-title">Victoria Hall</h3>
@@ -73,7 +81,7 @@
             </div>
          </div>
       </div>
-       
+<!--       RESIDENTS PANEL-->
     <div class="panel panel-danger">
          <div class="panel-heading clickable zoomless" data-toggle="collapse" data-target="#residentsPanel">
             <h3 class="panel-title">Residents</h3>
@@ -99,7 +107,7 @@
             </div>
          </div>
       </div>
-       
+<!--       EVENTS PANEL-->
        <div class="panel panel-danger">
          <div class="panel-heading clickable zoomless" data-toggle="collapse" data-target="#eventsPanel">
             <h3 class="panel-title">Events</h3>
@@ -125,9 +133,73 @@
             </div>
          </div>
       </div>
+<!--       ROOM PANEL-->
+       <div class="panel panel-danger">
+         <div class="panel-heading clickable zoomless" data-toggle="collapse" data-target="#roomsPanel">
+            <h3 class="panel-title">Rooms</h3>
+            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
+         </div>
+         <div class="panel-body collapse filter-panel" id="roomsPanel">
+            <div class="row container-fluid">
+               <button class="btn btn-danger" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addImages">Add Image</button>
+                <hr data-ng-if="signin.state == true">
+               <br>
+               <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" data-ng-repeat="rooms in roomImages">
+                  <div class="panel panel-danger">
+                     <div class="panel-heading" data-ng-if="signin.state == true">
+                        <div class="panel-title">
+                           <span class="pull-right clickable" style="padding-top: 10px;"><i class="glyphicon glyphicon-remove" data-ng-click="updateImageRooms(rooms.$id); deleteImageRooms();"></i></span>
+                        </div>
+                     </div>
+                     <div class="panel-image">
+                        <img src="{{rooms.url}}" class="panel-image-preview zoom" height="200" data-toggle="modal" data-target="#roomsModal" data-ng-click="updateImageRooms(rooms.$id);"/>                    
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 </div>
 <footer-file></footer-file>
+
+<!--ROOM IMAGE MODALS-->
+
+<div id="addImages" class="modal fade" role="dialog">
+   <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add Image under <strong>Rooms</strong> folder</h4>
+         </div>
+         <div class="modal-body">
+             <div class="row container-fluid">
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                     <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Title" data-ng-model="roomImageTitle" required>
+				</div>
+                     
+                     <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="roomImageDescription" required>
+				</div>
+                     <div data-ng-hide="roomImageTitle == undefined || roomImageDescription == undefined">
+                         <progress value="0" max="100" id="uploadRoomsImage">0%</progress>
+                        <input type="file" class="file" id="fileButtonRooms">
+                     </div>
+                          
+
+                 </div>
+             </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+
 <!--VICTORIA HALL-->
 <div id="addToVictoriaHall" class="modal fade" role="dialog">
    <div class="modal-dialog modal-lg">
@@ -214,7 +286,7 @@
                      <div class="form-group">
                     <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="eventsImageDescription" required>
 				</div>
-                     <div data-ng-hide="residentsImageTitle == undefined || VicHallImageDescription == residentsImageDescription">
+                     <div data-ng-hide="eventsImageTitle == undefined || eventsImageDescription == undefined">
                         <progress value="0" max="100" id="uploadEvents">0%</progress>
                         <input type="file" class="file" id="fileButtonEvents">
                      </div>  
@@ -227,13 +299,15 @@
       </div>
    </div>
 </div>
+<!--VIEW VIC HALL-->
 <div id="myModal" class="modal">
     <div class="modal-dialog modal-lg">
       <!-- Modal content-->
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">{{vicHallImages[indexValue].title}}</h4>
+            <h4 class="modal-title" data-ng-hide="signin.state == true">{{vicHallImages[indexValue].title}}</h4>
+             <input data-ng-if="signin.state == true" type="text" value="{{vicHallImages[indexValue].title}}" data-ng-model="vicHallImages[indexValue].title">
          </div>
          <div class="modal-body">
              <div class="container-fluid">
@@ -246,24 +320,27 @@
     margin: 1em 0;
     padding: 0;">
         
-            <h4><i>{{vicHallImages[indexValue].description}}</i></h4>
+            <h4 data-ng-hide="signin.state == true"><i>{{vicHallImages[indexValue].description}}</i></h4>
+                 <textarea data-ng-if="signin.state == true" data-ng-model="vicHallImages[indexValue].description">{{vicHallImages[indexValue].description}}</textarea>
              </div>
          </div>
          <div class="modal-footer">
-             
+             <button type="button" class="btn btn-default" data-ng-click="saveChangesVicHall();" data-ng-if="signin.state == true">Save Changes</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          </div>
       </div>
    </div>
 </div>
 
+<!--VIEW RESIDENTS-->
 <div id="residentsModal" class="modal">
     <div class="modal-dialog modal-lg">
       <!-- Modal content-->
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Title</h4>
+            <h4 class="modal-title" data-ng-hide="signin.state == true">{{residentsImages[indexValueResidents].title}}</h4>
+             <input data-ng-if="signin.state == true" type="text" value="{{residentsImages[indexValueResidents].title}}" data-ng-model="residentsImages[indexValueResidents].title">
          </div>
          <div class="modal-body">
              <div class="container-fluid">
@@ -275,24 +352,27 @@
     border-top: 1px solid #86110e;
     margin: 1em 0;
     padding: 0;">
-
+<h4 data-ng-hide="signin.state == true"><i>{{residentsImages[indexValueResidents].description}}</i></h4>
+                 <textarea data-ng-if="signin.state == true" data-ng-model="residentsImages[indexValueResidents].description">{{residentsImages[indexValueResidents].description}}</textarea>
              </div>
          </div>
          <div class="modal-footer">
-             
+             <button type="button" class="btn btn-default" data-ng-click="saveChangesResidents();" data-ng-if="signin.state == true">Save Changes</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          </div>
       </div>
    </div>
 </div>
 
+<!--VIEW EVENTS-->
 <div id="eventsModal" class="modal">
     <div class="modal-dialog modal-lg">
       <!-- Modal content-->
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Title</h4>
+            <h4 class="modal-title" data-ng-hide="signin.state == true">{{eventsImages[indexValueEvents].title}}</h4>
+             <input data-ng-if="signin.state == true" type="text" value="{{eventsImages[indexValueEvents].title}}" data-ng-model="eventsImages[indexValueEvents].title">
          </div>
          <div class="modal-body">
              <div class="container-fluid">
@@ -304,11 +384,45 @@
     border-top: 1px solid #86110e;
     margin: 1em 0;
     padding: 0;">
-
+<h4 data-ng-hide="signin.state == true"><i>{{eventsImages[indexValueEvents].description}}</i></h4>
+                 <textarea data-ng-if="signin.state == true" data-ng-model="eventsImages[indexValueEvents].description">{{eventsImages[indexValueEvents].description}}</textarea>
              </div>
          </div>
          <div class="modal-footer">
+             <button type="button" class="btn btn-default" data-ng-click="saveChangesEvents();" data-ng-if="signin.state == true">Save Changes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!--VIEW ROOMS-->
+<div id="roomsModal" class="modal">
+    <div class="modal-dialog modal-lg">
+      <!-- Modal content-->
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 data-ng-hide="signin.state == true" class="modal-title">{{roomImages[indexValueRooms].title}}</h4>
+             <input data-ng-if="signin.state == true" type="text" value="{{roomImages[indexValueRooms].title}}" data-ng-model="roomImages[indexValueRooms].title">
              
+         </div>
+         <div class="modal-body">
+             <div class="container-fluid">
+                       <img src="{{roomImages[indexValueRooms].url}}" class="img-responsive modal-content">
+    <h1>Description</h1>
+             <hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #86110e;
+    margin: 1em 0;
+    padding: 0;">
+        
+            <h4 data-ng-hide="signin.state == true"><i>{{roomImages[indexValueRooms].description}}</i></h4>
+                 <textarea data-ng-if="signin.state == true" data-ng-model="roomImages[indexValueRooms].description">{{roomImages[indexValueRooms].description}}</textarea>
+             </div>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-ng-click="saveChangesRoom();" data-ng-if="signin.state == true">Save Changes</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          </div>
       </div>

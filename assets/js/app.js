@@ -116,31 +116,6 @@ app.controller('myCtrl', ['$scope', 'firebase' ,'$firebaseObject', 'Auth', '$fir
 
     };
     
-    // Sending Notification to Admin
-    
-    $scope.press = function () {
-        console.log("PRESSED");
-        
-        $scope.numNotifications.$loaded()
-          .then(function(x) {
-            console.log(x);
-            console.log(x[0].$value);
-            var currentValue = x[0].$value;
-            var newValue = (x[0].$value) + 1;
-            console.log(newValue);
-            x[0].$value = newValue;
-            $scope.numNotifications.$save(0).then(function (data) {
-            });
-          })
-          .catch(function(error) {
-            console.log("Error:", error);
-          });
-//        for(var i = 0 ; i < $scope.numNotifications.length ; i++) {
-//        var count = $scope.numNotifications[i].Value;
-//        console.log("Hi " + count);
-//    }
-    }
-    
     $scope.resetNotifications = function () {
         $scope.numNotifications.$loaded()
           .then(function(x) {

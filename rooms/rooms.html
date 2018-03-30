@@ -1,23 +1,58 @@
 <header-file></header-file>
+
+<style>
+.clickable{
+   cursor: pointer;   
+   }
+    
+    .zoomless {
+    transition: background-color 0.5s ease; /* Animation */
+    
+}
+
+.zoomless:hover {
+    background-color: rgb(67, 8, 7);
+    color: white;/* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+    .panel-heading span {
+   margin-top: -20px;
+   font-size: 15px;
+   }
+    
+    #uploadRoomsImage {
+   -webkit-appearance : none;
+   appearance: none;
+   width: 100%;
+   margin-bottom: 10px;
+   }
+
+</style>
 <hr>
 <div class="container">
     <div class="row">
-        <div class="container">
-            <a class="btn btn-default action-button col-xs-12 col-sm-3 col-md-3 col-lg-3" href="" style="" data-ng-show="signin.state == true" data-target="#addRoomModal" data-toggle="modal">Add +</a>
-        </div>
             
     
     </div>
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading" style="background-color: #430807; color: white">Rooms</div>
+      <div class="panel-heading" style="background-color: #430807; color: white">Rooms <a href="#!gallery" style="color: white;"><span class="glyphicon glyphicon-picture"></span></a></div>
+        
       <div class="panel-body">
-        <p>PRICES FOR ACCOMMODATION</p>
+          
+          <a class="btn btn-danger col-xs-12 col-sm-3 col-md-3 col-lg-3" href="" data-ng-show="signin.state == true" data-target="#addRoomModal" data-toggle="modal">Add to VH</a>
+          <a class="btn btn-danger col-xs-12 col-sm-3 col-md-3 col-lg-3" href="" data-ng-show="signin.state == true" data-target="#addRoomVRModal" data-toggle="modal">Add to VR</a>
       </div>
 
       <!-- Table -->
         <div class="container-fluid">
             <table class="table table-hover">
+                <h3><strong>Victoria Hall</strong></h3>
+                <hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #86110e;
+    margin: 1em 0;
+    padding: 0;">
   <thead>
     <tr>
       <th scope="col">Type of room</th>
@@ -29,7 +64,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="table-active" data-ng-repeat="roomInfo in roomsJson">
+    <tr class="table-active" data-ng-repeat="roomInfo in rooms">
       <th scope="row">{{roomInfo.tor}}</th>
       <td>RM {{roomInfo.daily}}</td>
       <td>RM {{roomInfo.f2m}}</td>
@@ -43,8 +78,51 @@
     <span class="sr-only">Toggle Dropdown</span>
   </button>
   <ul class="dropdown-menu">
-    <li><a href="" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(roomInfo.id);">Edit</a></li>
-    <li><a href="" data-ng-click="update(roomInfo.id); delete();">Delete</a></li>
+    <li><a href="" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(roomInfo.$id);">Edit</a></li>
+    <li><a href="" data-ng-click="update(roomInfo.$id); delete();">Delete</a></li>
+    
+  </ul>
+</div></td>
+    </tr>
+  </tbody>
+                
+</table>
+            <br/>
+            <table class="table table-hover">
+                <h3><strong>Victoria Residence</strong></h3>
+                <hr style="display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #86110e;
+    margin: 1em 0;
+    padding: 0;">
+  <thead>
+    <tr>
+      <th scope="col">Type of room</th>
+      <th scope="col">Daily Stay</th>
+      <th scope="col">1-2 Months</th>
+      <th scope="col">3-4 Months</th>
+      <th scope="col">5-6 Months</th>
+      <th scope="col" data-ng-if="signin.state == true"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active" data-ng-repeat="roomInfo in roomsVR">
+      <th scope="row">{{roomInfo.tor}}</th>
+      <td>RM {{roomInfo.daily}}</td>
+      <td>RM {{roomInfo.f2m}}</td>
+      <td>RM {{roomInfo.three24}}</td>
+      <td>RM {{roomInfo.five26}}</td>
+<!--      <td data-ng-show="signin.state == true"><a class="btn btn-default action-button" href="" style="" data-ng-show="signin.state == true" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(roomInfo.id);">Edit</a></td>-->
+    <td data-ng-show="signin.state == true"><div class="btn-group">
+  <button type="button" class="btn btn-danger">Options</button>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="" data-target="#editRoomVRModal" data-toggle="modal" data-ng-click="updateVR(roomInfo.$id);">Edit</a></li>
+    <li><a href="" data-ng-click="updateVR(roomInfo.$id); deleteVR();">Delete</a></li>
     
   </ul>
 </div></td>
@@ -62,11 +140,16 @@
                 <li>A fee of <strong>RM150.00</strong> is required to be paid upon receipt of the room <strong>keys and entrance pass.</strong></li>
             </ul>   
         </div>
+        
+        
       
     </div>
     
     
+    
+    
 </div>
+
 
 
 <!-- Modal For adding to table-->
@@ -77,7 +160,7 @@
       <div class="modal-content">
         <div class="modal-header" style="background-color: #86110e; color: white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add room</h4>
+          <h4 class="modal-title">Add room (VH)</h4>
         </div>
         <div class="modal-body">
             <form role="form">
@@ -129,7 +212,7 @@
       <div class="modal-content">
         <div class="modal-header" style="background-color: #86110e; color: white">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add room</h4>
+          <h4 class="modal-title">Edit room (VR)</h4>
         </div>
         <div class="modal-body">
             <form role="form">
@@ -159,6 +242,110 @@
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
                         <button type="submit" class="btn btn-lg btn-success" value="Sign In" style="background-color: #86110e; color: white; width: 100%" data-ng-click="editTable();">Save Changes</button>
+					</div>
+					
+				</div>
+			</fieldset>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #86110e; color: white">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<!-- Modal For adding to table VR-->
+  <div class="modal fade" id="addRoomVRModal" role="dialog" data-ng-controller="roomsCtrl">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #86110e; color: white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add room (VR)</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+			<fieldset>
+				<hr class="colorgraph">
+				<div class="form-group container-fluid">
+                    <input type="text" class="form-control input-lg" placeholder="Type of room" data-ng-model="torVR" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" placeholder="Daily Price" data-ng-model="dailyVR" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" placeholder="First 2 months" data-ng-model="f2mVR" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" placeholder="3 to 4 months " data-ng-model="three24VR" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" placeholder="5 to 6 months" data-ng-model="five26VR" required>
+				</div>
+
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                        <button type="submit" class="btn btn-lg btn-success" value="Sign In" style="background-color: #86110e; color: white; width: 100%" data-ng-click="addToTableVR();">Add</button>
+					</div>
+					
+				</div>
+			</fieldset>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #86110e; color: white">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<!-- Modal For Editing table VR-->
+  <div class="modal fade" id="editRoomVRModal" role="dialog" data-ng-controller="roomsCtrl">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #86110e; color: white">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit room (VR)</h4>
+        </div>
+        <div class="modal-body">
+            <form role="form">
+			<fieldset>
+				<hr class="colorgraph">
+				<div class="form-group container-fluid">
+                    <input type="text" class="form-control input-lg" placeholder="Type of room" data-ng-model="roomsVR[indexValueVR].tor" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="text" class="form-control input-lg" data-ng-model="roomsVR[indexValueVR].daily" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="text" class="form-control input-lg" data-ng-model="roomsVR[indexValueVR].f2m" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" data-ng-model="roomsVR[indexValueVR].three24" required>
+				</div>
+                
+                <div class="form-group container-fluid">
+                    <input type="number" class="form-control input-lg" data-ng-model="roomsVR[indexValueVR].five26" required>
+				</div>
+
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
+                        <button type="submit" class="btn btn-lg btn-success" value="Sign In" style="background-color: #86110e; color: white; width: 100%" data-ng-click="editTableVR();">Save Changes</button>
 					</div>
 					
 				</div>

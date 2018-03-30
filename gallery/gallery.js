@@ -67,7 +67,7 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 
                 upload.value = percentage;
                 toaster.pop({type: 'success', title: "Image uploaded Successfully"});
-
+                uploadEvents.value = 0;
                 
 
             });
@@ -89,7 +89,12 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
         });
     }
     
-    
+    $scope.saveChangesVicHall = function () {
+        $scope.vicHallImages.$save($scope.indexValue).then(function (data) {
+            console.log($scope.vicHallImages[$scope.indexValue]);
+            toaster.pop({type: 'success', title: "Ok",  body: $scope.vicHallImages[$scope.indexValue].filename + " has been edited" });
+        });
+    }
     
     $scope.update = function (id) {
         $scope.indexValue = $scope.vicHallImages.findIndex(vicHallImages => vicHallImages.$id === id);
@@ -120,7 +125,7 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 
                 uploadResidents.value = percentage;
                 toaster.pop({type: 'success', title: "Image uploaded Successfully"});
-
+                uploadEvents.value = 0;
                 
 
             });
@@ -142,7 +147,12 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
         });
     }
     
-    
+    $scope.saveChangesResidents = function () {
+        $scope.residentsImages.$save($scope.indexValueResidents).then(function (data) {
+            console.log($scope.residentsImages[$scope.indexValueResidents]);
+            toaster.pop({type: 'success', title: "Ok",  body: $scope.residentsImages[$scope.indexValueResidents].filename + " has been edited" });
+        });
+    }
     
     $scope.updateResidents = function (id) {
         $scope.indexValueResidents = $scope.residentsImages.findIndex(residentsImages => residentsImages.$id === id);
@@ -173,7 +183,7 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 
                 uploadEvents.value = percentage;
                 toaster.pop({type: 'success', title: "Image uploaded Successfully"});
-
+                uploadEvents.value = 0;
                 
 
             });
@@ -195,11 +205,77 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
         });
     }
     
-    
+    $scope.saveChangesEvents = function () {
+        $scope.eventsImages.$save($scope.indexValueEvents).then(function (data) {
+            console.log($scope.eventsImages[$scope.indexValueEvents]);
+            toaster.pop({type: 'success', title: "Ok",  body: $scope.eventsImages[$scope.indexValueEvents].filename + " has been edited" });
+        });
+    }
     
     $scope.updateEvents = function (id) {
         $scope.indexValueEvents = $scope.eventsImages.findIndex(eventsImages => eventsImages.$id === id);
     };
     
+    
+    // ROOM IMAGES
+    $scope.roomImages = $firebaseArray(ref.child('images/rooms/'));
+    
+    var progressbar = document.getElementById('uploadRoomsImage');
+    var fileButtonRooms = document.getElementById("fileButtonRooms");
+        
+        fileButtonRooms.addEventListener('change', function (e) {
+            var file = e.target.files[0];
+            var pathReference = storageRef.child('images/rooms' + file.name);
+
+            var imagesRef = storageRef.child('images/rooms/' + file.name);
+            
+            imagesRef.put(file).then(function(snapshot) {
+                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                
+                $scope.roomImages.$add({
+                    url: snapshot.downloadURL,
+                    filename: file.name,
+                    title: $scope.roomImageTitle,
+                    description: $scope.roomImageDescription
+                });
+                
+                progressbar.value = percentage;
+                toaster.pop({type: 'success', title: "Image uploaded Successfully"});
+                progressbar.value = 0;
+                console.log("Executed");
+                return;
+
+            });
+        });
+    
+    $scope.deleteImageRooms = function () {
+        var desertRef = storageRef.child("images/rooms/" + $scope.roomImages[$scope.indexValueRooms].filename);
+        // Delete the file
+        desertRef.delete().then(function() {
+            
+            var item = $scope.roomImages[$scope.indexValueRooms];
+            $scope.roomImages.$remove(item).then(function (deletedData) {
+            });
+            toaster.pop({type: 'success', title: "OK", body: $scope.roomImages[$scope.indexValueRooms].filename + " has been deleted"});
+
+          // File deleted successfully
+        }).catch(function(error) {
+            toaster.pop({type: 'danger', title: "Error", body: error});
+        });
+    }
+    
+    $scope.saveChangesRoom = function () {
+        $scope.roomImages.$save($scope.indexValueRooms).then(function (data) {
+            console.log($scope.roomImages[$scope.indexValueRooms]);
+            toaster.pop({type: 'success', title: "Ok",  body: $scope.roomImages[$scope.indexValueRooms].filename + " has been edited" });
+        });
+    }
+    
+    
+    
+    $scope.updateImageRooms = function (id) {
+        $scope.indexValueRooms = $scope.roomImages.findIndex(roomImages => roomImages.$id === id);
+        console.log(id);
+    };
     
 }]);
