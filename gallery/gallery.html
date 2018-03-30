@@ -126,7 +126,7 @@
                         </div>
                      </div>
                      <div class="panel-image">
-                        <img src="{{images.url}}" class="panel-image-preview zoom" height="300" data-toggle="modal" data-target="#eventsModal" data-ng-click="updateEvents(images.$id);"/>                    
+                        <img src="{{images.url}}" class="panel-image-preview zoom" height="200" data-toggle="modal" data-target="#eventsModal" data-ng-click="updateEvents(images.$id);"/>                    
                      </div>
                   </div>
                </div>
@@ -306,7 +306,7 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title" data-ng-hide="signin.state == true">{{vicHallImages[indexValue].title}}</h4>
+            <h4 class="modal-title panel-heading-color" data-ng-hide="signin.state == true"><strong>{{vicHallImages[indexValue].title}}</strong></h4>
              <input data-ng-if="signin.state == true" type="text" value="{{vicHallImages[indexValue].title}}" data-ng-model="vicHallImages[indexValue].title">
          </div>
          <div class="modal-body">
@@ -339,7 +339,7 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title" data-ng-hide="signin.state == true">{{residentsImages[indexValueResidents].title}}</h4>
+            <h4 class="modal-title panel-heading-color" data-ng-hide="signin.state == true"><strong>{{residentsImages[indexValueResidents].title}}</strong></h4>
              <input data-ng-if="signin.state == true" type="text" value="{{residentsImages[indexValueResidents].title}}" data-ng-model="residentsImages[indexValueResidents].title">
          </div>
          <div class="modal-body">
@@ -371,7 +371,7 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title" data-ng-hide="signin.state == true">{{eventsImages[indexValueEvents].title}}</h4>
+            <h4 class="modal-title panel-heading-color" data-ng-hide="signin.state == true"><strong>{{eventsImages[indexValueEvents].title}}</strong></h4>
              <input data-ng-if="signin.state == true" type="text" value="{{eventsImages[indexValueEvents].title}}" data-ng-model="eventsImages[indexValueEvents].title">
          </div>
          <div class="modal-body">
@@ -402,7 +402,7 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 data-ng-hide="signin.state == true" class="modal-title">{{roomImages[indexValueRooms].title}}</h4>
+            <h4 data-ng-hide="signin.state == true" class="modal-title panel-heading-color"><strong>{{roomImages[indexValueRooms].title}}</strong></h4>
              <input data-ng-if="signin.state == true" type="text" value="{{roomImages[indexValueRooms].title}}" data-ng-model="roomImages[indexValueRooms].title">
              
          </div>
