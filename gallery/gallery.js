@@ -10,9 +10,36 @@ app.config(['$routeProvider', function ($routeProvider) {
     });
 }]);
 
+// UNIQUE VALUES FROM ARRAY
+    
+    app.filter('unique', function() {
+   // we will return a function which will take in a collection
+   // and a keyname
+   return function(collection, keyname) {
+      // we define our output and keys array;
+      var output = [], 
+          keys = [];
+      
+      // we utilize angular's foreach function
+      // this takes in our original collection and an iterator function
+      angular.forEach(collection, function(item) {
+          // we check to see whether our object exists
+          var key = item[keyname];
+          // if it's not already part of our keys array
+          if(keys.indexOf(key) === -1) {
+              // add it to our keys array
+              keys.push(key); 
+              // push this item to our final output array
+              output.push(item);
+          }
+      });
+      // return our array which should be devoid of
+      // any duplicates
+      return output;
+   };
+});
 
-
-app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster', function ($scope, firebase, $firebaseArray, toaster) {
+app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster', '$filter', function ($scope, firebase, $firebaseArray, toaster, $filter) {
     // GALLERY CODE -----------------------------------------------------------------------------------------------------------------
       jQuery(document).ready(function($) {
  
@@ -35,6 +62,8 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 $('#carousel-text').html($('#slide-content-'+id).html());
         });
 });
+    
+    
     
     
     // FIREBASE STORAGE CODE -----------------------------------------------------------------------------------------------------------------
@@ -278,4 +307,27 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
         console.log(id);
     };
     
+    // FILTER EVENTS
+    $scope.eventsImagesTitle = $firebaseArray(ref.child('images/events/'));
+    $scope.currentPage = 1, $scope.numPerPage = 5, $scope.orderByField = 'title', $scope.reverseSort = false;
+    $scope.$watch("titleFilter", function (newVal, oldVal) {
+        if($scope.titleFilter === undefined) {
+            $scope.titleFilter = "";
+        }
+        for (var i = 0; i < $scope.eventsImages.length; i++)
+            $scope.eventsImages[i].filtered = $scope.eventsImages[i].title.indexOf(newVal) === -1
+    });
+    
+    
+    
+    
+    
 }]);
+
+app.filter('range', function () {
+    return function (input, total) {
+        total = parseInt(total);
+        for (var i = 0; i < total; ++i) input.push(i);
+        return input;
+    };
+    });
