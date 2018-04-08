@@ -271,9 +271,6 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 progressbar.value = percentage;
                 toaster.pop({type: 'success', title: "Image uploaded Successfully"});
                 progressbar.value = 0;
-                console.log("Executed");
-                return;
-
             });
         });
     
