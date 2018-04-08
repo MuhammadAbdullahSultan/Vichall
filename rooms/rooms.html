@@ -25,6 +25,8 @@
    width: 100%;
    margin-bottom: 10px;
    }
+    
+    
 
 </style>
 <hr>
@@ -35,12 +37,18 @@
     </div>
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading" style="background-color: #430807; color: white">Rooms <a href="#!gallery" style="color: white;"><span class="glyphicon glyphicon-picture"></span></a></div>
+      <div class="panel-heading clearfix" style="background-color: #430807; color: white; overflow: auto;">
+          <h4 class="panel-title pull-left" style="padding-top: 7.5px;">Rooms</h4>
+          <a href="#!gallery" style="" class="btn btn-default button-style pull-right">
+              <span class="glyphicon glyphicon-picture"></span>  
+              Gallery
+          </a>
+        </div>
         
       <div class="panel-body">
           
-          <a class="btn btn-danger col-xs-12 col-sm-3 col-md-3 col-lg-3" href="" data-ng-show="signin.state == true" data-target="#addRoomModal" data-toggle="modal">Add to VH</a>
-          <a class="btn btn-danger col-xs-12 col-sm-3 col-md-3 col-lg-3" href="" data-ng-show="signin.state == true" data-target="#addRoomVRModal" data-toggle="modal">Add to VR</a>
+          <a class="btn btn-default col-xs-12 col-sm-3 col-md-3 col-lg-3 button-style" href="" data-ng-show="signin.state == true" data-target="#addRoomModal" data-toggle="modal" style="margin-right: 5px;">Add to VH</a>
+          <a class="btn btn-default col-xs-12 col-sm-3 col-md-3 col-lg-3 button-style" href="" data-ng-show="signin.state == true" data-target="#addRoomVRModal" data-toggle="modal">Add to VR</a>
       </div>
 
       <!-- Table -->
@@ -72,8 +80,8 @@
       <td>RM {{roomInfo.five26}}</td>
 <!--      <td data-ng-show="signin.state == true"><a class="btn btn-default action-button" href="" style="" data-ng-show="signin.state == true" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(roomInfo.id);">Edit</a></td>-->
     <td data-ng-show="signin.state == true"><div class="btn-group">
-  <button type="button" class="btn btn-danger">Options</button>
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-default button-style">Options</button>
+  <button type="button" class="btn btn-default dropdown-toggle button-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>
   </button>
@@ -115,8 +123,8 @@
       <td>RM {{roomInfo.five26}}</td>
 <!--      <td data-ng-show="signin.state == true"><a class="btn btn-default action-button" href="" style="" data-ng-show="signin.state == true" data-target="#editRoomModal" data-toggle="modal" data-ng-click="update(roomInfo.id);">Edit</a></td>-->
     <td data-ng-show="signin.state == true"><div class="btn-group">
-  <button type="button" class="btn btn-danger">Options</button>
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-default button-style">Options</button>
+  <button type="button" class="btn btn-default dropdown-toggle button-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="caret"></span>
     <span class="sr-only">Toggle Dropdown</span>
   </button>

@@ -63,7 +63,7 @@
          </div>
          <div class="panel-body collapse filter-panel" id="vicHallPanel">
             <div class="row container-fluid">
-               <button class="btn btn-danger" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addToVictoriaHall">Add Image</button>
+               <button class="btn btn-default button-style" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addToVictoriaHall">Add Image</button>
                 <hr data-ng-if="signin.state == true">
                <br>
                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" data-ng-repeat="images in vicHallImages">
@@ -89,7 +89,7 @@
          </div>
          <div class="panel-body collapse filter-panel" id="residentsPanel">
             <div class="row container-fluid">
-               <button class="btn btn-danger" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addToResidents">Add Image</button>
+               <button class="btn btn-default button-style" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addToResidents">Add Image</button>
                 <hr data-ng-if="signin.state == true">
                <br>
                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" data-ng-repeat="images in residentsImages">
@@ -131,7 +131,7 @@
     padding: 0;">
                 
                 <br/>
-               <button class="btn btn-danger" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addToEvents">Add Image</button>
+               <button class="btn btn-default button-style" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addToEvents">Add Image</button>
                 <hr data-ng-if="signin.state == true">
                <br>
                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" data-ng-repeat="images in eventsImages | filter: images track by $index" ng-if="!images.filtered">
@@ -157,7 +157,7 @@
          </div>
          <div class="panel-body collapse filter-panel" id="roomsPanel">
             <div class="row container-fluid">
-               <button class="btn btn-danger" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addImages">Add Image</button>
+               <button class="btn btn-default button-style" data-ng-if="signin.state == true" data-toggle="modal" data-target="#addImages">Add Image</button>
                 <hr data-ng-if="signin.state == true">
                <br>
                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" data-ng-repeat="rooms in roomImages">
@@ -327,7 +327,7 @@
          </div>
          <div class="modal-body">
              <div class="container-fluid">
-                       <img src="{{vicHallImages[indexValue].url}}" class="img-responsive modal-content">
+                       <img src="{{vicHallImages[indexValue].url}}" class="img-responsive modal-content center-all">
     <h1>Description</h1>
              <hr style="display: block;
     height: 1px;
@@ -360,7 +360,7 @@
          </div>
          <div class="modal-body">
              <div class="container-fluid">
-                       <img src="{{residentsImages[indexValueResidents].url}}" class="img-responsive modal-content">
+                       <img src="{{residentsImages[indexValueResidents].url}}" class="img-responsive modal-content center-all">
     <h1>Description</h1>
              <hr style="display: block;
     height: 1px;
@@ -392,7 +392,7 @@
          </div>
          <div class="modal-body">
              <div class="container-fluid">
-                       <img src="{{eventsImages[indexValueEvents].url}}" class="img-responsive modal-content">
+                       <img src="{{eventsImages[indexValueEvents].url}}" class="img-responsive modal-content center-all">
     <h1>Description</h1>
              <hr style="display: block;
     height: 1px;
@@ -424,7 +424,7 @@
          </div>
          <div class="modal-body">
              <div class="container-fluid">
-                       <img src="{{roomImages[indexValueRooms].url}}" class="img-responsive modal-content">
+                       <img src="{{roomImages[indexValueRooms].url}}" class="img-responsive modal-content center-all">
     <h1>Description</h1>
              <hr style="display: block;
     height: 1px;
