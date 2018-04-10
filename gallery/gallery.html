@@ -44,6 +44,13 @@
    margin-top: -20px;
    font-size: 15px;
    }
+    
+    svg{
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display:inline-block;
+}
 </style>
 <hr>
 <div class="">
@@ -55,6 +62,8 @@
     border-top: 1px solid #86110e;
     margin: 1em 0;
     padding: 0;">
+       
+       
 <!--       VICTORIA HALL PANEL-->
       <div class="panel panel-danger">
          <div class="panel-heading clickable zoomless" data-toggle="collapse" data-target="#vicHallPanel">
@@ -200,7 +209,28 @@
                     <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="roomImageDescription" required>
 				</div>
                      <div data-ng-hide="roomImageTitle == undefined || roomImageDescription == undefined">
-                         <progress value="0" max="100" id="uploadRoomsImage">0%</progress>
+                         <progress value="0" max="100" id="uploadRoomsImage" hidden>0%</progress>
+                         
+                         <div id="loader" data-ng-if="RoomsImageLoader == true && RoomsImageUploaded == false">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                        
+
+                         <svg data-ng-if="RoomsImageUploaded == true && RoomsImageLoader == false" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+                         <h3 class="text-success text-center" data-ng-if="RoomsImageUploaded == true && RoomsImageLoader == false" style="padding-bottom: 20px;">Image Successfully Uploaded</h3>
+                         
+                         <svg data-ng-if="RoomsImageNotUploaded == true && RoomsImageLoader == false" class="crossmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="crossmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="crossmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
+                         <h3 class="text-danger text-center" data-ng-if="RoomsImageNotUploaded == true && RoomsImageLoader == false" style="padding-bottom: 20px;">Image Already Exists</h3>
+                         </svg>
+                         
                         <input type="file" class="file" id="fileButtonRooms">
                      </div>
                           
@@ -235,9 +265,31 @@
                      <div class="form-group">
                     <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="VicHallImageDescription" required>
 				</div>
+
                      <div data-ng-hide="VicHallImageTitle == undefined || VicHallImageDescription == undefined">
-                         <progress value="0" max="100" id="upload">0%</progress>
+                         <progress value="0" max="100" id="upload" hidden="">0%</progress>
+                         <div id="loader" data-ng-if="VicHallImageLoader == true && VicHallImageUploaded == false">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                        
+
+                         <svg data-ng-if="VicHallImageUploaded == true && VicHallImageLoader == false" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+                         <h3 class="text-success text-center" data-ng-if="VicHallImageUploaded == true && VicHallImageLoader == false" style="padding-bottom: 20px;">Image Successfully Uploaded</h3>
+                         
+                         <svg data-ng-if="VicHallImageNotUploaded == true && VicHallImageLoader == false" class="crossmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="crossmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="crossmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
+                         <h3 class="text-danger text-center" data-ng-if="VicHallImageNotUploaded == true && VicHallImageLoader == false" style="padding-bottom: 20px;">Image Already Exists</h3>
+                         </svg>
+                         
                         <input type="file" class="file" id="fileButton">
+                         
                      </div>
                           
 
@@ -270,7 +322,27 @@
                     <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="residentsImageDescription" required>
 				</div>
                      <div data-ng-hide="residentsImageTitle == undefined || VicHallImageDescription == residentsImageDescription">
-                         <progress value="0" max="100" id="uploadResidents">0%</progress>
+                         <progress value="0" max="100" id="uploadResidents" hidden>0%</progress>
+                         
+                         <div id="loader" data-ng-if="ResidentsImageLoader == true && ResidentsImageUploaded == false">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+
+                         <svg data-ng-if="ResidentsImageUploaded == true && ResidentsImageLoader == false" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+                         <h3 class="text-success text-center" data-ng-if="ResidentsImageUploaded == true && ResidentsImageLoader == false" style="padding-bottom: 20px;">Image Successfully Uploaded</h3>
+                         
+                         <svg data-ng-if="ResidentsImageNotUploaded == true && ResidentsImageLoader == false" class="crossmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="crossmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="crossmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
+                         <h3 class="text-danger text-center" data-ng-if="ResidentsImageNotUploaded == true && ResidentsImageLoader == false" style="padding-bottom: 20px;">Image Already Exists</h3>
+                         </svg>
+                         
                         <input type="file" class="file" id="fileButtonResidents">
                      </div>      
 
@@ -303,7 +375,27 @@
                     <input type="text" class="form-control input-lg" placeholder="Description" data-ng-model="eventsImageDescription" required>
 				</div>
                      <div data-ng-hide="eventsImageTitle == undefined || eventsImageDescription == undefined">
-                        <progress value="0" max="100" id="uploadEvents">0%</progress>
+                        <progress value="0" max="100" id="uploadEvents" hidden>0%</progress>
+                         
+                         <div id="loader" data-ng-if="EventsImageLoader == true && EventsImageUploaded == false">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+
+                         <svg data-ng-if="EventsImageUploaded == true && EventsImageLoader == false" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+                         <h3 class="text-success text-center" data-ng-if="EventsImageUploaded == true && EventsImageLoader == false" style="padding-bottom: 20px;">Image Successfully Uploaded</h3>
+                         
+                         <svg data-ng-if="EventsImageNotUploaded == true && EventsImageLoader == false" class="crossmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="crossmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="crossmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
+                         <h3 class="text-danger text-center" data-ng-if="EventsImageNotUploaded == true && EventsImageLoader == false" style="padding-bottom: 20px;">Image Already Exists</h3>
+                         </svg>
+                         
                         <input type="file" class="file" id="fileButtonEvents">
                      </div>  
                  </div>

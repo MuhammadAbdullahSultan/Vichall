@@ -74,19 +74,34 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
     // VIC HALL IMAGES -----------------------------------------------------------------------------------------------------------------
     
     $scope.vicHallImages = $firebaseArray(ref.child('images/vichall/'));
-    
-    var progressbar = document.getElementById('upload');
         var fileButton = document.getElementById("fileButton");
         
         fileButton.addEventListener('change', function (e) {
-            var file = e.target.files[0];
-            var pathReference = storageRef.child('images/vichall' + file.name);
+            
+            
+            $scope.VicHallImageUploaded = false;
+            $scope.VicHallImageLoader = true;
+            $scope.VicHallImageNotUploaded = false;
 
+            $scope.$apply();
+                upload.value = 0;
+            var file = e.target.files[0];
+            
+            for (var i = 0 ; i < $scope.vicHallImages.length ; i++) {
+                console.log($scope.vicHallImages[i]);
+                if($scope.vicHallImages[i].filename === file.name) {
+                    $scope.VicHallImageLoader = false;
+                    $scope.VicHallImageNotUploaded = true;
+                    $scope.$apply();
+                    return;
+                }
+            }
+            var pathReference = storageRef.child('images/vichall' + file.name);
+            
             var imagesRef = storageRef.child('images/vichall/' + file.name);
             
             imagesRef.put(file).then(function(snapshot) {
-                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                
+                $scope.VicHallImageLoader = false;
                 $scope.vicHallImages.$add({
                     url: snapshot.downloadURL,
                     filename: file.name,
@@ -94,9 +109,7 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                     description: $scope.VicHallImageDescription
                 });
                 
-                upload.value = percentage;
-                toaster.pop({type: 'success', title: "Image uploaded Successfully"});
-                uploadEvents.value = 0;
+                $scope.VicHallImageUploaded = true;
                 
 
             });
@@ -137,14 +150,31 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
         var fileButtonResidents = document.getElementById("fileButtonResidents");
         
         fileButtonResidents.addEventListener('change', function (e) {
+            
+            $scope.ResidentsImageUploaded = false;
+            $scope.ResidentsImageLoader = true;
+            $scope.ResidentsImageNotUploaded = false;
+            
+            $scope.$apply();
+            uploadResidents.value = 0;
             var file = e.target.files[0];
+            
+            for (var i = 0 ; i < $scope.residentsImages.length ; i++) {
+                if($scope.residentsImages[i].filename === file.name) {
+                    $scope.ResidentsImageLoader = false;
+                    $scope.ResidentsImageNotUploaded = true;
+                    $scope.$apply();
+                    return;
+                }
+            }
             var pathReference = storageRef.child('images/residents' + file.name);
 
             var imagesRef = storageRef.child('images/residents/' + file.name);
             
             imagesRef.put(file).then(function(snapshot) {
                 var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                
+                $scope.ResidentsImageLoader = false;
+
                 $scope.residentsImages.$add({
                     url: snapshot.downloadURL,
                     filename: file.name,
@@ -153,9 +183,7 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 });
                 
                 uploadResidents.value = percentage;
-                toaster.pop({type: 'success', title: "Image uploaded Successfully"});
-                uploadEvents.value = 0;
-                
+                $scope.ResidentsImageUploaded = true;
 
             });
         });
@@ -195,14 +223,30 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
         var fileButtonEvents = document.getElementById("fileButtonEvents");
         
         fileButtonEvents.addEventListener('change', function (e) {
+            
+            $scope.EventsImageUploaded = false;
+            $scope.EventsImageLoader = true;
+            $scope.EventsImageNotUploaded = false;
+            
+            $scope.$apply();
+            uploadEvents.value = 0;
             var file = e.target.files[0];
+            
+            for (var i = 0 ; i < $scope.eventsImages.length ; i++) {
+                if($scope.eventsImages[i].filename === file.name) {
+                    $scope.EventsImageLoader = false;
+                    $scope.EventsImageNotUploaded = true;
+                    $scope.$apply();
+                    return;
+                }
+            }
             var pathReference = storageRef.child('images/events' + file.name);
 
             var imagesRef = storageRef.child('images/events/' + file.name);
             
             imagesRef.put(file).then(function(snapshot) {
                 var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                
+                $scope.EventsImageLoader = false;
                 $scope.eventsImages.$add({
                     url: snapshot.downloadURL,
                     filename: file.name,
@@ -211,9 +255,7 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                 });
                 
                 uploadEvents.value = percentage;
-                toaster.pop({type: 'success', title: "Image uploaded Successfully"});
-                uploadEvents.value = 0;
-                
+                $scope.EventsImageUploaded = true;
 
             });
         });
@@ -253,14 +295,29 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
     var fileButtonRooms = document.getElementById("fileButtonRooms");
         
         fileButtonRooms.addEventListener('change', function (e) {
+            $scope.RoomsImageUploaded = false;
+            $scope.RoomsImageLoader = true;
+            $scope.RoomsImageNotUploaded = false;
+            
+            $scope.$apply();
+            uploadRoomsImage.value = 0;
             var file = e.target.files[0];
+            
+            for (var i = 0 ; i < $scope.roomImages.length ; i++) {
+                if($scope.roomImages[i].filename === file.name) {
+                    $scope.RoomsImageLoader = false;
+                    $scope.RoomsImageNotUploaded = true;
+                    $scope.$apply();
+                    return;
+                }
+            }
             var pathReference = storageRef.child('images/rooms' + file.name);
 
             var imagesRef = storageRef.child('images/rooms/' + file.name);
             
             imagesRef.put(file).then(function(snapshot) {
                 var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                
+                $scope.RoomsImageLoader = false;
                 $scope.roomImages.$add({
                     url: snapshot.downloadURL,
                     filename: file.name,
@@ -268,9 +325,8 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
                     description: $scope.roomImageDescription
                 });
                 
-                progressbar.value = percentage;
-                toaster.pop({type: 'success', title: "Image uploaded Successfully"});
-                progressbar.value = 0;
+                uploadRoomsImage.value = percentage;
+                $scope.RoomsImageUploaded = true;
             });
         });
     
