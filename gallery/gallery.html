@@ -184,6 +184,42 @@
             </div>
          </div>
       </div>
+       
+       <div class="panel panel-danger">
+         <div class="panel-heading clickable zoomless" data-toggle="collapse" data-target="#videosPanel">
+            <h3 class="panel-title">Videos</h3>
+            <span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
+         </div>
+         <div class="panel-body collapse filter-panel" id="videosPanel">
+            <div class="row container-fluid">
+               <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <div class="panel panel-success">
+                      <div class="panel-heading">Video</div>
+                     <div class="panel-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/9xwazD5SyVg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="col-xs-12 col-sm-6 col-md-6 col-lg-6"></iframe>
+                            
+                        </div>
+                      </div>
+                     
+                  </div>
+               </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                  <div class="panel panel-success">
+                      <div class="panel-heading">Video</div>
+                     <div class="panel-body">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/9xwazD5SyVg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen class="col-xs-12 col-sm-6 col-md-6 col-lg-6"></iframe>
+                            
+                        </div>
+                      </div>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+       
    </div>
 </div>
 <footer-file></footer-file>
@@ -228,7 +264,7 @@
                          <h3 class="text-success text-center" data-ng-if="RoomsImageUploaded == true && RoomsImageLoader == false" style="padding-bottom: 20px;">Image Successfully Uploaded</h3>
                          
                          <svg data-ng-if="RoomsImageNotUploaded == true && RoomsImageLoader == false" class="crossmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="crossmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="crossmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
-                         <h3 class="text-danger text-center" data-ng-if="RoomsImageNotUploaded == true && RoomsImageLoader == false" style="padding-bottom: 20px;">Image Already Exists</h3>
+                         <h3 class="text-danger text-center" data-ng-if="RoomsImageNotUploaded == true && RoomsImageLoader == false" style="padding-bottom: 20px;">Image already exists or has the same file name</h3>
                          </svg>
                          
                         <input type="file" class="file" id="fileButtonRooms">
@@ -285,7 +321,7 @@
                          <h3 class="text-success text-center" data-ng-if="VicHallImageUploaded == true && VicHallImageLoader == false" style="padding-bottom: 20px;">Image Successfully Uploaded</h3>
                          
                          <svg data-ng-if="VicHallImageNotUploaded == true && VicHallImageLoader == false" class="crossmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="crossmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="crossmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
-                         <h3 class="text-danger text-center" data-ng-if="VicHallImageNotUploaded == true && VicHallImageLoader == false" style="padding-bottom: 20px;">Image Already Exists</h3>
+                         <h3 class="text-danger text-center" data-ng-if="VicHallImageNotUploaded == true && VicHallImageLoader == false" style="padding-bottom: 20px;">Image already exists or has the same file name</h3>
                          </svg>
                          
                         <input type="file" class="file" id="fileButton">
@@ -340,7 +376,7 @@
                          <h3 class="text-success text-center" data-ng-if="ResidentsImageUploaded == true && ResidentsImageLoader == false" style="padding-bottom: 20px;">Image Successfully Uploaded</h3>
                          
                          <svg data-ng-if="ResidentsImageNotUploaded == true && ResidentsImageLoader == false" class="crossmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="crossmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="crossmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
-                         <h3 class="text-danger text-center" data-ng-if="ResidentsImageNotUploaded == true && ResidentsImageLoader == false" style="padding-bottom: 20px;">Image Already Exists</h3>
+                         <h3 class="text-danger text-center" data-ng-if="ResidentsImageNotUploaded == true && ResidentsImageLoader == false" style="padding-bottom: 20px;">Image already exists or has the same file name</h3>
                          </svg>
                          
                         <input type="file" class="file" id="fileButtonResidents">
@@ -393,7 +429,7 @@
                          <h3 class="text-success text-center" data-ng-if="EventsImageUploaded == true && EventsImageLoader == false" style="padding-bottom: 20px;">Image Successfully Uploaded</h3>
                          
                          <svg data-ng-if="EventsImageNotUploaded == true && EventsImageLoader == false" class="crossmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="crossmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="crossmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
-                         <h3 class="text-danger text-center" data-ng-if="EventsImageNotUploaded == true && EventsImageLoader == false" style="padding-bottom: 20px;">Image Already Exists</h3>
+                         <h3 class="text-danger text-center" data-ng-if="EventsImageNotUploaded == true && EventsImageLoader == false" style="padding-bottom: 20px;">Image already exists or has the same file name</h3>
                          </svg>
                          
                         <input type="file" class="file" id="fileButtonEvents">
