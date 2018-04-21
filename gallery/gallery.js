@@ -219,7 +219,7 @@ app.controller('galleryCtrl', ['$scope', 'firebase', '$firebaseArray', 'toaster'
     
     $scope.eventsImages = $firebaseArray(ref.child('images/events/'));
     $scope.order_item = 'title';
-$scope.order_reverse = false;
+    $scope.order_reverse = false;
     var progressbarEvents = document.getElementById('uploadEvents');
         var fileButtonEvents = document.getElementById("fileButtonEvents");
         
